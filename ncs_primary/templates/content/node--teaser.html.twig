@@ -1,0 +1,167 @@
+{% set view_mode = view_mode|clean_class %}
+{% set main_category = categories.0 %}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix',
+    'node--maincategory--' ~ main_category|clean_class
+  ]
+%}
+
+{# appending node--category--categoryname as classes #}
+{% for category in categories %}
+  {% set classes = classes|merge(['node--category--' ~ category|clean_class]) %}
+{% endfor %}
+
+{# extracting media for video #}
+{% set PosterImgCount = content.field_video_poster_image['#items']|length %}
+{% set VideoEmbedCount = content.field_video_embed['#items']|length %}
+{% set VideoUploadCount = content.field_video_upload['#items']|length %}
+{% set UseVideo = node.field_use_video.value %}
+
+{# extracting image for story #}
+{% if content_type in ['story'] %}
+  {% set MainImageCount = content.field_main_image_reference['#items']|length %}
+  {% set TeaserImageCount = content.field_teaser_images['#items']|length %}
+  {% set VideoCount = content.field_video['#items']|length %}
+  {% set UseVideo = node.field_use_video.value ? '1' : '0' %}
+  {% set UsePhoto = node.field_use_video.value ? '0' : '1' %}
+{% endif %}
+
+{# extracting image for podcast #}
+{% if content_type in ['podcast'] %}
+  {% set MainImageCount = content.field_main_image_reference['#items']|length %}
+{% endif %}
+
+{# extracting image for event, classified #}
+{% set UGCImageCount = content.field_ugc_main_image['#items']|length %}
+
+{# extracting image for blog #}
+{% set ImageRefCount = content.field_image_reference['#items']|length %}
+
+{# extracting image for gallery #}
+{% set GalleryImgCount = content.field_image_reference_list['#items']|length %}
+
+{% if content_type in ['video'] %}
+  {# extracting video for video #}
+  {% set UseEmbed = content.field_video_embed['#items']|length %}
+  {% set UseUpload = content.field_video_upload['#items']|length %}
+  {% set UsePosterImage = content.field_video_poster_image['#items']|length %}
+{% endif %}
+
+{% if debugtwig == 1 %}
+  <pre>
+  UseVideo: {{ UseVideo }} 
+  UsePhoto: {{ UsePhoto }} 
+  VideoCount: {{ VideoCount }} 
+  VideoUploadCount: {{ VideoUploadCount }}
+  VideoEmbedCount: {{ VideoEmbedCount }}
+  PosterImgCount: {{ PosterImgCount }}
+  UseEmbed: {{ UseEmbed }} 
+  UseUpload: {{ UseUpload }} 
+  </pre>
+{% endif %}
+
+<article{{ attributes.addClass(classes) }}>
+
+{% if content_type in ['blog_post'] %}
+  {# author_picture #}
+{% endif %}
+
+  {# do we have any images or video? #}
+  {% if ( (MainImageCount or UGCImageCount or ImageRefCount or  GalleryImgCount or VideoCount or VideoUploadCount or VideoEmbedCount) > 0)  %}
+
+    <div class="col-md-4 teaser-image">
+
+        {% if (UseEmbed or UseUpload) > 0 %}
+            {% import "themes/custom/ncs_primary/templates/macros/video.html.twig" as video %}
+            {{ video.showvideo(url, UseEmbed, UseUpload, content.field_video_embed, video_url, video_height, video_width, video_preload, video_controls, video_autoplay, video_loop, video_muted, node.field_video_poster_image.0.entity.uri.value, content.field_video, content_type, field_video_type, view_mode) }}
+          <a href="{{ url }}" class="video-link"></a>
+        {% else %}
+          
+            {% if content_type in ['event','classified_ad'] %}
+              <a href="{{ url }}" rel="bookmark">{{ content.field_ugc_main_image }}</a>
+            {% elseif content_type in ['blog_post'] %}
+              <a href="{{ url }}" rel="bookmark">{{ content.field_image_reference[0] }}</a>
+            {% elseif content_type in ['photo_gallery'] %}
+              <a href="{{ url }}" rel="bookmark">{{ content.field_image_reference_list[0] }}</a>
+            {% elseif content_type in ['story','podcast'] %}
+              {% if UseVideo %}
+                {{ content.field_video }}
+                <a href="{{ url }}" class="video-link"></a>
+              {% elseif TeaserImageCount %}
+                <a href="{{ url }}" rel="bookmark">{{ content.field_teaser_images }}</a>
+              {% else %}
+                <a href="{{ url }}" rel="bookmark">{{ content.field_main_image_reference }}</a>
+              {% endif %}
+            {% elseif content_type in ['video'] %}
+              <a href="{{ url }}" rel="bookmark">{{ content.field_video_poster_image }}</a>
+            {% endif %}
+
+        {% endif %}
+    </div>
+    <div class="col-md-8 teaser-body">
+  {% else %}
+    <div class="col-full teaser-body">
+  {% endif %}
+
+  {# render the label (title) or headline a/b depending on content type #}
+  {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+  {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+
+  {# @to-do:  set display byline, display author, display date per content type in the theme settings. #}
+  {# @to-do:  set label text for 'published/created', 'updated/modified' to be used in date.html.twig macro #}
+  {% if display_submitted %}
+    {% import "themes/custom/ncs_primary/templates/macros/byline.html.twig" as byline %}
+    {{ byline.renderbyline( content.field_byline, content.field_byline_attribute) }}
+  {% endif %}
+
+  {% if display_submitted %}
+
+    {% set created_date = node.getCreatedTime %}
+    {% set changed_date = node.getChangedTime %}
+    {% set publish_on_date =  publish_on|default(0000000001)|date('U') %}
+
+    {% import "themes/custom/ncs_primary/templates/macros/date.html.twig" as dates %}
+    {{ dates.render_date( created_date, changed_date, publish_on, publish_on_date, 1, debugtwig, custom_labels.published_label, custom_labels.modified_label ) }}
+
+  {% endif %}
+
+
+    <div{{ content_attributes.addClass('node__content') }}>
+
+      {% if GalleryImgCount > 0 %}
+        <span class="photo-count"><strong>Images: {{ GalleryImgCount}}</strong></span>
+      {% endif %}
+
+      {% if custom_styles.display_teaser_icons %}
+      <div class="teaser-icon">
+        {% if view_mode == 'teaser' %}
+          {% if content_type == 'photo_gallery' %}
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+          {% elseif content_type == 'video' %}
+            <i class="fa fa-video-camera" aria-hidden="true"></i>
+          {% elseif content_type == 'event' %}
+            <i class="fa fa-calendar-o" aria-hidden="true"></i>
+          {% endif %}
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {# content|without('field_headline_a','field_headline_b','field_ab_headline_checkbox', 'field_main_image_reference', 'field_ugc_main_image', 'field_image_reference', 'field_image_reference_list', 'field_byline', 'field_byline_attribute','field_video','field_video_poster_image', 'field_video_embed', 'field_video_upload','field_use_video','field_use_photo' ) #}
+
+        {% if content.field_lede['#items'] %}
+          {{ content.field_lede}}
+        {% else %}
+          {{ content.body }}
+        {% endif %}
+
+    </div>
+  </div>
+</article>

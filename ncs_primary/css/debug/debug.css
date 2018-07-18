@@ -1,0 +1,29 @@
+#wrapper {
+    border:solid 1px orange;
+}
+
+#page-wrapper { border:solid 1px black; }
+#page-header { border:solid 1px black; }
+#page-content { border:solid 1px black; }
+#page-footer { border:solid 1px black; }
+
+.region{
+    border: solid 1px #00d9ff;
+}
+.block {
+   border: solid 1px purple;
+}
+.image-container {
+    background:teal;
+}
+.image-container * {
+    border: solid 1px lime;
+}
+
+.moved-block {
+    border: solid 1px red;
+}
+
+.field {
+    background: #dae4f1;
+}

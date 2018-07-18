@@ -1,0 +1,15 @@
+{% macro render_slideshow(slider_type, arrows, field_main_image_reference, field_image_reference_list, field_ugc_images, field_image_reference, field_teaser_image) %}
+
+<div class="slideshow">
+  {% if arrows == 'top' %}<div id="slider-arrows" class="clearfix"></div>{% endif %}
+  <div class="slider single-item">
+    {{ attach_library('ncs_primary/slideshow') }}
+    {{ field_main_image_reference }}
+    {{ field_image_reference }}
+    {{ field_image_reference_list }}
+    {{ field_ugc_images }}
+    {{ field_teaser_image }}
+  </div>
+  {% if arrows == 'bottom' %}<div id="slider-arrows" class="clearfix"></div>{% endif %}
+</div>
+ {% endmacro %}

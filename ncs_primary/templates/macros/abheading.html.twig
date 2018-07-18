@@ -1,0 +1,43 @@
+{% macro abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) %}
+
+<!-- BEGIN OUTPUT from '\themes\devops\ncs_primary\templates\macros\abheading.html.twig' -->
+
+{% if view_mode in ['ncs_primary_headlines'] %}
+  {% set elem = 'h4' %}
+{% elseif view_mode in ['full'] %}
+  {% set elem = 'h1' %}
+{% else %}
+  {% set elem = 'h2' %}
+{% endif %}
+
+  {% if content_type == 'story' %}
+
+    <span class="abheading">
+      <{{ elem }} class="node-title">
+        <span class="abheading_title">
+          {% if view_mode == 'full' %}
+              {{ heading_a|default('No title') }}
+          {% else %}
+              <a href="{{ url }}" rel="follow">{{ heading_a|default('No title') }}</a>
+          {% endif %}
+        </span>
+        <span class="abheading_a hidden" >{{ heading_a }}</span>
+        <span class="abheading_b hidden" >{{ heading_b }}</span>
+        <span class="abheading_checkbox hidden">{{ ab_heading_checkbox }}</span>
+      </{{ elem }}>
+    </span>
+
+  {% else %}
+
+    <{{ elem }} {{ title_attributes.addClass('node-title') }}>
+      {% if view_mode == 'full' %}
+        {{ label|default('No title') }}
+      {% else %}
+         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      {% endif %}
+    </{{ elem }}>
+
+  {% endif %}
+
+<!-- END OUTPUT from '\themes\devops\ncs_primary\templates\macros\abheading.html.twig' -->
+{% endmacro %}

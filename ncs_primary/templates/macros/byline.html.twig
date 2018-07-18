@@ -1,0 +1,16 @@
+ {% macro renderbyline(field_byline, field_byline_attribute, author_name, content_type) %}
+  <span class="teaser-byline">
+    {% if content_type in ['blog_post'] %}
+
+      {% if field_byline['#items'] %}
+        {{ field_byline }}
+      {% else %}
+        {{ author_name }}
+      {% endif %}
+
+    {% else %}
+      {{ field_byline }}
+      {{ field_byline_attribute }}
+    {% endif %}
+  </span>
+{% endmacro %}

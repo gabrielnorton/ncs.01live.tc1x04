@@ -1,0 +1,24 @@
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+
+<div {{row.attributes}} style="position:relative; overflow:hidden"> 
+	<div  {{row.attributes}} style="overflow:hidden"> 
+	<div  style='overflow:hidden;'>
+	{% if content %}
+	{% for row in rows %}
+	<div {{row.attributes}}>
+	{{content}}
+	</div>
+	{% endfor %}
+	<p>{{attributes}}</p>
+	{{content}}
+	{% else %}
+	<div class="view-empty">
+	{{ empty }}
+	</div>
+	{% endif %}
+	</div>
+	</div>
+</div>

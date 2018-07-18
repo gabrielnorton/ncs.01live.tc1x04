@@ -1,0 +1,46 @@
+.upload-video {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.upload-video video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.embedded-video {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.embedded-video iframe,
+.embedded-video object,
+.embedded-video embed{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.page-node-type-story .embedded-video iframe {
+    width: 100%;
+}
+
+@media ( min-width : 600px) and (max-width : 850px) {
+  .upload-video {
+    width: 100%;
+  }
+  .embedded-video {
+    width: 100%;
+  }
+}

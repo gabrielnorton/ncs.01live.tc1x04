@@ -1,0 +1,73 @@
+{% set view_mode = view_mode|clean_class %}
+{% set main_category = categories.0 %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--maincategory--' ~ main_category|clean_class,
+  ]
+%}
+
+{# appending node--category--categoryname as classes #}
+{% for category in categories %}
+  {% set classes = classes|merge(['node--category--' ~ category|clean_class]) %}
+{% endfor %}
+
+{# extracting image for story, podcast #}
+{% set MainImageCount = content.field_main_image_reference['#items']|length %}
+{% set TeaserImageCount = content.field_teaser_images['#items']|length %}
+{% set VideoCount = content.field_video['#items']|length %}
+{% set useVideo = (content.field_use_video == 'Use Video') ? 1 : 0 %}
+
+  {# extracting media for video #}
+  {% set useVideo = node.field_use_video.value ? '1' : '0' %}
+  {% set usePhoto = node.field_use_video.value ? '0' : '1' %}
+
+<article{{ attributes.addClass(classes) }}>
+  <div class="topic-media">
+    {% if MainImageCount or VideoCount or TeaserImageCount %}
+      {% if useVideo %}
+          <div class="teaser-video">
+            {{ content.field_video }}
+            <a href="{{ url }}" class="video-link"></a>
+          </div>
+      {% else %}
+        <div class="topic-image">
+          <a href="{{ url }}" rel="bookmark">
+            {% if TeaserImageCount %}
+              {{ content.field_teaser_images }}
+            {% else %}
+              {{ content.field_main_image_reference }}
+            {% endif %}
+          </a>
+          {% if main_category %}
+            <a href="{{ url }}" class="card-category">{{ main_category }}</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+  <div class="topic-body">
+    {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+    {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+
+    <div{{ content_attributes.addClass('node__content') }}>
+
+    {% if display_submitted %}
+      {% import "themes/custom/ncs_primary/templates/macros/byline.html.twig" as byline %}
+      {{ byline.renderbyline( content.field_byline, content.field_byline_attribute) }}
+    {% endif %}
+
+      {% if content.field_lede['#items'] %}
+        {{ content.field_lede}}
+      {% else %}
+        {{ content.body }}
+      {% endif %}
+    </div>
+  </div>
+
+</article>

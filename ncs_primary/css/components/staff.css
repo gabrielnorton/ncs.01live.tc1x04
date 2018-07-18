@@ -1,0 +1,112 @@
+/* begin /staff-directory styles */
+.ncs-primary-staff-item {
+    width: calc(50% - 20px);
+    float: left;
+    border: solid 1px #e0e3e6;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    padding-bottom: 30px;
+    min-width: 340px;
+}
+.ncs-primary-staff-item figure img {
+    height: 100px;
+    margin-right:10px;
+    border:solid 1px #e0e3e6;
+}
+
+/* begin /staff/% styles */
+.ncs-primary-staff.clearfix.row {
+    padding: 10px 0;
+    border: solid 1px #dad9d9;
+}
+
+.view-cf-ncs-primary-staff .username {
+    font-size: 22px;
+    margin-bottom: .8em;
+    color: black;
+    font-weight: 700;
+}
+
+.view-cf-ncs-primary-staff .userbio {
+    line-height: 150%;
+    padding-top: 10px;
+}
+
+.view-cf-ncs-primary-staff .useremail {
+}
+
+.view-cf-ncs-primary-staff .userpicture {
+    padding-bottom: 15px;
+    max-width: 315px;
+}
+
+.view-cf-ncs-primary-staff .userphonenumber {
+}
+
+.view-cf-ncs-primary-staff .usersocial #social-media ul {
+    overflow: auto;
+}
+
+.view-cf-ncs-primary-staff .usersocial #social-media ul li {
+  list-style-type: none;
+  float: left;
+  padding-top: 10px;
+}
+
+.view-cf-ncs-primary-staff .usersocial #social-media ul li a i {
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    font-size: 25px;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 15%;
+  transition: all 0.2s ease-in-out;
+}
+
+.view-cf-ncs-primary-staff .usersocial #social-media ul li a i:hover {
+    opacity: .7;
+}
+
+.fa-facebook {
+    background:#3b5998;
+} 
+.fa-linkedin {
+    background:#007bb6;
+}
+.fa-twitter {
+    background:#00aced;
+}
+
+.fa-pinterest {
+    background:#cb2027;
+}
+
+.fa-youtube {
+    background:#cc181e;
+}
+
+.fa-rss {
+    background:#FFA500;
+}
+
+.fa-instagram {
+    background:#125688;
+}
+
+.fa-whatsapp {
+    background:#125688;
+}
+
+.fa-spotify {
+  background:#00e461;
+}
+
+.fa-vimeo {
+  background:#aad450;
+}
+
+.google-plus {
+    background:#dd4b39
+}

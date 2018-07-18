@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Default theme implementation for a social media thing on node page.
+ */
+#}
+<div class="content">
+  <div class="navigation-social-bookmarks-node">
+    <ul class="social-bookmarks-node list-inline">
+        <li class="text icon-container sm-icon-comment">
+          <a data-toggle="modal" data-target="#onset-login" title="Comment" href="#" class="social-media-icon-node comment-node" rel="nofollow">comment</a>
+        </li>
+        <li class="share icon-container sm-icon-share">
+          <a data-toggle="tooltip" title="Share" href="#" rel="nofollow">share</a>
+        </li>
+
+      {% if anonymous==TRUE %}
+
+          <li class="heart icon-container sm-icon-save" data-toggle="modal" data-target="#onset-login">
+              <a data-toggle="tooltip" title="Save" href="#" class="social-media-icon-node login-needed" rel="nofollow">login</a>
+        </li>
+
+      {% else %}
+
+        {% if exists ==FALSE %}
+          {% set unsaveclass = 'hide' %}
+        {% else %}
+          {% set saveclass = 'hide' %}
+        {% endif %}
+
+          <li class="heart icon-container sm-icon-save {{ saveclass }}">
+            <a data-toggle="tooltip" title="Save" href="#" class="social-media-icon-node save-node" rel="nofollow">save</a>
+          </li>
+
+          <li class="heart icon-container sm-icon-unsave {{ unsaveclass }}">
+            <a data-toggle="tooltip" title="Unsave" href="#" class="social-media-icon-node unsave-node" rel="nofollow">unsave</a>
+          </li>
+
+      {% endif %}
+
+      <li class="print icon-container sm-icon-print">
+          <a data-toggle="tooltip" title="Print" href="#" class="social-media-icon-node print-node" rel="nofollow">print</a>
+      </li>
+    </div><!--//.icon-row-container-->
+    </ul><!--//.social-bookmarks-node-->
+</div>

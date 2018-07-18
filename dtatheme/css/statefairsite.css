@@ -1,0 +1,127 @@
+#main {
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+  margin-right: auto;
+  margin-left: auto;
+}
+.messages {
+  border: none !important;
+}
+html {
+  background: #F3F3F3;
+}
+#block-views-block-latest-block-1 {
+  margin-top: 30px;
+  margin-left: 5px;
+}
+@media (min-width: 768px) {
+  #main {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  #main {
+    width: 990px;
+  }
+}
+@media (min-width: 1200px) {
+  #main {
+    width: 1170px;
+  }
+}
+
+footer {
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 768px) {
+  footer {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  footer {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  footer {
+    width: 1170px;
+  }
+}
+
+
+@media (max-width: 450px) {
+  .block ul.social-bookmarks {
+    padding: 0;
+  }
+  #logo {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  .node--type-story.node--view-mode-full .node__content {
+    padding-right: 5%;
+  }
+  .region-header {
+    float: left;
+  }
+  .region-header .block {
+    margin: 0;
+  }
+  #block-dtatheme-login {
+    /*float: right;
+    margin-right: 45px;*/
+    width: 100%;
+    text-align: center;
+  }
+  .layout-one-sidebar .sidebar {
+    padding: 5px;
+  }
+  .node--view-mode-full.node--type-story .field-type-image .field-item {
+    width: 100%;
+  }
+  .node--view-mode-full.node--type-story .field-type-image {
+    margin-left: 20px;
+  }
+  .field-node--field-in-page-image .field-items {
+    float: initial;
+  }
+  .view-latest-stories .field-type-image .field-item {
+    width: 100%;
+    height: auto;
+  }
+  .field-node--field-in-page-image .field-items {
+    padding-bottom: 0 !important;
+  }
+}
+
+@media (max-width: 650px) {
+  .view-latest-stories .node .field-type-image {
+    float: initial;
+    width: 100%;
+    padding: 10px 3px;
+  }
+  .field-node--field-in-page-image .field-items {
+    float: left;
+    padding-bottom: 30px;
+  }
+  .node--view-mode-full.node--type-story .field-node--field-in-page-image .field-items {
+    float: right;
+  }
+  .view-latest-stories .node .field-type-text-with-summary {
+    width: 100%;
+    float: initial;
+    padding: 20px 3px 1px 3px;
+    text-align: justify;
+    display: inline-block;
+  }
+  .view-latest-stories .node .field-type-text-with-summary p {
+    margin-right: 7px;
+  }
+  .layout-one-sidebar .sidebar {
+    padding: 5px;
+  }
+}

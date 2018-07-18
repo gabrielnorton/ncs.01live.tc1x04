@@ -1,0 +1,219 @@
+/* large image style*/
+/*.block-blockgroup > */
+h3 { /*first child*/
+  font-family: 'Domine', serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 22px;
+}
+
+article header {
+  display: block;
+}
+
+.large-style>.view-node ~ .view-node {
+  float: right;
+}
+
+.large-style>.view-node ~ .view-node .image-container {
+  width: 45%;
+  float: left;
+}
+
+.large-style>.view-node ~ .view-node .rest-of-node {
+  width: 45%;
+  float: left;
+  margin-left: 10px;
+  min-height: 0px;
+}
+
+.large-style>.view-node+.view-node+.view-node {
+  margin-top: 0.01%;
+}
+
+.large-style>.view-node .clearfix:before{
+  display: inherit;
+  content: "";
+}
+
+.large-style>.view-node .clearfix:after{
+  clear: none;
+}
+
+.large-style>.view-node ~ .view-node .rest-of-node .node__content {
+  display: none;
+}
+
+.large-style>.view-node .rest-of-node {
+  width: 45%;
+  min-height: 180px;
+  float: left;
+}
+
+.large-style>.view-node ~ .view-node h3 {
+  /* For 2nd and 3rd article, make title smaller then 1st article, and camel case */
+  font-size: 1.09em;
+  text-transform: none;
+}
+
+#content .region-content>.view-node ~ .view-node article .rest-of-node header .node__title a span
+  {
+  font-size: 20px;
+}
+
+@media ( max-width : 560px) {
+  #content .region-content>.view-node ~ .view-node {
+    width: 100%;
+  }
+}
+/*below is custom styles for large-style use on TABLETS or smaller, move 2nd and 3rd article down below main image and make it 100% width and left justify*/
+@media ( max-width : 1100px) {
+  .large-style>.view-node ~ .view-node header {
+    font-size: .87em;
+  }
+}
+
+@media ( max-width : 790px) {
+  .large-style>.view-node ~ .view-node header {
+    font-size: .77em;
+  }
+}
+
+@media ( max-width : 600px) {
+  .large-style>.view-node .rest-of-node {
+    width: 100%;
+  }
+  .large-style>.view-node ~ .view-node header {
+    font-size: 1.09em;
+  }
+  .large-style>.view-node ~ .view-node {
+    margin-left: 0%;
+  }
+  .large-style .view-node ~ .view-node {
+    margin-top: 0.01%;
+  }
+}
+
+@media(min-width: 601px) {
+  .large-style>.view-node ~ .view-node {
+    width: 50%;
+  }
+}
+
+/******** This is for the small image style *******/
+.block-blockgroup .frontpage-identifier {
+  min-height: 350px;
+}
+
+.frontpage-identifier>.view-node+.view-node {
+  margin-top: -21%;
+  clear: left;
+}
+
+.frontpage-identifier>.view-node ~ .view-node h3 {
+  font-size: 1.09em;
+  text-transform: none;
+}
+
+.frontpage-identifier>.view-node+.view-node+.view-node {
+  margin-top: -6%;
+}
+
+.frontpage-identifier .node__title {
+  margin-bottom: 10px;
+}
+
+.frontpage-identifier>.view-node .image-container {
+  width: 49%;
+  float: left;
+}
+
+.frontpage-identifier>.view-node .rest-of-node {
+  width: 48%;
+  float: left;
+  margin-right: -20px;
+}
+
+.frontpage-identifier>.view-node ~ .view-node .rest-of-node{
+  width: 100%;
+  float: none;
+  margin-right: 0;
+}
+
+.frontpage-identifier>.view-node .rest-of-node .node__content {
+  display: none;
+}
+
+.frontpage-identifier>.view-node .rest-of-node .field--name-body {
+  font-size: .73em;
+}
+
+.frontpage-identifier>.view-node {
+  margin-bottom: 10px;
+}
+
+.frontpage-identifier .rest-of-node {
+  margin-left: 5%;
+}
+
+.frontpage-identifier>.view-node ~ .view-node .image-container {
+  display: none;
+}
+
+.frontpage-identifier>.view-node ~ .view-node .node__content {
+  display: none;
+}
+
+.frontpage-identifier>.view-node ~ .view-node {
+  /*thuy  fix so the 2nd &3rd article float to right*/
+  float: right;
+  width: 48%;
+  clear: left;
+}
+
+/*Styling classfied ads title link as story headlines*/
+#content span.field.field--name-title.field--type-string.field--label-hidden {
+  font-family: 'Domine' , serif;
+  margin-bottom: 10px;
+  font-size: 22px ;
+  color: #337ab7 ;
+}
+
+@media ( max-width : 580px) {
+	.large-style>.view-node.shrinkify{
+	width:100%;
+	}
+
+	.large-style .shrinkify .rest-of-node{
+	   width:100%;
+	}
+
+    /*.frontpage-identifier*/
+}
+
+
+
+
+
+
+
+/*below is custom styles for frontpage-identifier style for TABLETS or smaller.  Move 2nd and 3rd article down below main image and make it 100% width and left justify*/
+@media ( max-width : 1100px) {
+  .frontpage-identifier>.view-node+.view-node {
+    margin-top: 1%;
+    margin-right: 0%;
+    width: 100%;
+  }
+  .frontpage-identifier>.view-node+.view-node+.view-node {
+    margin-top: 3%;
+    margin-right: 0%;
+    width: 100%;
+  }
+  .frontpage-identifier .rest-of-node {
+    margin-left: 0%;
+  }
+  .frontpage-identifier>.view-node .rest-of-node {
+    margin-left: 5%;
+  }
+}

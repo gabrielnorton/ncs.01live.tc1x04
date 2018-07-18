@@ -1,0 +1,62 @@
+{{ attach_library('ncs_primary/sidebarteaser') }}
+{% set view_mode = view_mode|clean_class %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'node--maincategory--' ~ main_category|clean_class
+  ]
+%}
+{% set main_category = categories.0 %}
+{# appending node--category--categoryname as classes #}
+{% for category in categories %}
+  {% set classes = classes|merge(['node--category--' ~ category|clean_class]) %}
+{% endfor %}
+{% set UseVideo = node.field_use_video.value %}
+
+{% if content_type in ['video'] %}
+  {# extracting video for video #}
+  {% set use_embed = content.field_video_embed['#items']|length %}
+  {% set use_upload = content.field_video_upload['#items']|length %}
+{% endif %}
+
+<article{{ attributes.addClass(classes) }}>
+
+  <div class="teaser-image">
+    {% if content_type in ['video'] or UseVideo == 1 %}
+      {% import "themes/custom/ncs_primary/templates/macros/video.html.twig" as video %}
+      <a href="{{ url }}" class="video-link">
+        {{ video.showvideo(url, use_embed, use_upload, content.field_video_embed, video_url, video_height, video_width, video_preload, video_controls, video_autoplay, video_loop, video_muted, node.field_video_poster_image.0.entity.uri.value, content.field_video, content_type, debugtwig) }}
+      </a>
+    {% else %}
+      <a href="{{ url }}">
+        {% if content_type in ['event','classified_ad'] %}
+          {{ content.field_ugc_main_image }}
+        {% elseif content_type in ['blog_post'] %}
+          {{ content.field_image_reference }}
+        {% elseif content_type in ['photo_gallery'] %}
+          {{ content.field_image_reference_list[0] }}
+        {% elseif content_type in ['story','podcast'] %}
+          {{ content.field_main_image_reference }}
+        {% endif %}
+      </a>
+    {% endif %}
+  </div>
+
+  <div class="teaser-body">
+    {# render the label (title) or headline a/b depending on content type #}
+    {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+    {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+
+    {# @to-do:  set display byline, display author, display date per content type in the theme settings. #}
+    {# @to-do:  set label text for 'published/created', 'updated/modified' to be used in date.html.twig macro #}
+    {% if display_submitted %}
+      {% import "themes/custom/ncs_primary/templates/macros/byline.html.twig" as byline %}
+      {{ byline.renderbyline( content.field_byline, content.field_byline_attribute) }}
+    {% endif %}
+  </div>
+</article>

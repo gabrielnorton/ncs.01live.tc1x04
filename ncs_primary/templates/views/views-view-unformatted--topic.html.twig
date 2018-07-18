@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Theme override to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+
+{% if 'featured-stories' in rows.0.attributes.class %}
+ {% set is_featured = true %}
+ {% set itemcount = rows|length %}
+{% endif %}
+
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+
+{% if debugtwig == 1 %}
+  <pre>
+    featured: {{ is_featured }}
+    view.id: {{ view.id }}
+    featured_layout: {{ featured_layout }}
+    itemcount: {{ itemcount }}
+  </pre>
+{% endif %}
+
+<div class="row">
+  {% for row in rows %}
+    
+    {% set left_row_classes = [
+      default_row_class ? 'views-row',
+      is_featured ? 'col-md-7' : 'col-md-6',
+    ]
+    %}
+    {% set right_row_classes = [
+      default_row_class ? 'views-row',
+      is_featured ? 'col-md-5' : 'col-md-6',
+    ]
+    %}
+
+    {% if loop.index == 1 %}
+      <div{{ row.attributes.addClass(left_row_classes) }}>
+        {{ row.content }}
+      </div>
+
+      {# @to-do: remove image,byline,video media in some other way than CSS #}
+      <div{{ row.attributes.addClass(right_row_classes, 'no-image', 'no-byline', 'topic-list', 'no-video') }}>
+    {% else %}
+
+      {% if is_featured %}
+        <div class="is-featured"> {{ row.content }} </div>
+      {% else %}
+        {{ row.content }}
+      {% endif %}
+
+    {% endif %}
+
+   {% if loop.last %}
+     </div>
+   {% endif %}
+  {% endfor %}
+</div>

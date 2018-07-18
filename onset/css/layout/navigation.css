@@ -1,0 +1,190 @@
+/* bootstrap overrides */
+.navbar {
+  min-height:40px;
+}
+
+.affix{
+  position: static;
+}
+
+.icon-bar {
+  background-color: #2f2f2f;
+}
+
+@media (max-width: 992px) {
+  #block-mainmenu {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  #block-mainmenu .edge ul{
+    right: 0px
+  }
+  
+  #block-mainmenu .not-edge ul{
+    left: 0px
+  }
+
+  #block-mainmenu .nav-justified {
+    display: -webkit-flex;
+    -webkit-flex-wrap: wrap;
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  
+  #block-mainmenu .nav-justified>li {
+    width: auto;
+    display: flex;
+  }
+  
+  #block-mainmenu .nav-justified>.dropdown .dropdown-menu {
+    top: 100%;
+  }
+  
+  #block-mainmenu .nav > li > a[title="Home"] {
+    transform: translateY(10px);
+    height: 25px;
+  }
+}
+
+/* rest of the main menu css */
+#block-mainmenu .nav > li > a {
+  border-bottom: solid 2px white;
+  color: black;
+  font-size: 12px;
+}
+
+#block-mainmenu .nav li a span.menu-text {
+  white-space: nowrap;
+}
+
+#block-mainmenu .nav > li:hover > a span.menu-text,
+#block-mainmenu .nav li.dropdown ul.dropdown-menu li:hover > a span.menu-text {
+  border-bottom: solid 2px black;
+}
+
+#main-menu-collapse ul.nav li.menu-item--active-trail > a span.menu-text {
+  border-bottom:solid 2px black;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+@media (min-width: 768px) {
+  #block-mainmenu .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  #block-mainmenu .dropdown-menu {
+    border: none;
+    margin-top: -1px;
+  }
+  #block-mainmenu .nav > li > a:hover {
+    background: inherit;
+    color: inherit;
+  }
+  #block-mainmenu .nav > li > a[title="Home"] {
+    background: #ffffff url("/themes/custom/onset/images/home.png") no-repeat right top;
+    font-size: 0;
+    width: 22px;
+  }
+}
+
+@media (max-width: 767px) {
+  #block-mainmenu {
+    background: white;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 501;
+  }
+
+  #main-menu-collapse {
+    min-width: 190px;
+  }
+  #block-mainmenu ul.nav li a {
+    text-align:left;
+    font-weight:bold;
+    padding:8px;
+  }
+  #block-mainmenu ul.dropdown-menu {
+    width: 100%;
+    position: relative;
+    box-shadow: none;
+    border: solid 1px #eaeaea;
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
+  #block-mainmenu .dropdown-menu>li>a:hover,
+  #block-mainmenu .dropdown-menu>li>a:focus {
+    background: #fff;
+  }
+
+  #page, #main-wrapper,
+  .region-primary-menu .menu-item a.is-active,
+  .region-primary-menu .menu-item--active-trail a {
+    /* this is an override of colors.css */
+    background: inherit;
+  }
+}
+
+/* CSS for dropdown search */
+.region-primary-menu li.search i span, .region-primary-menu div#search-mobile i span {
+  font-size: 0;
+}
+
+.region-primary-menu li.search ul.search-menu {
+  min-width: 268px;
+  padding: 10px 8px;
+}
+
+.search-form .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.search-api-block-form .button {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc !important;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.search-api-block-form .js-form-type-search {
+  display: inline;
+  margin-right: 0;
+}
+
+#edit-search-api-fulltext {
+  border-radius: 4px;
+  display: inline-block;
+  width: auto !important;
+  vertical-align: middle;
+  padding: 6px 12px;
+}
+/* End dropdown search */

@@ -1,0 +1,7 @@
+slideshow:
+	version: 8.x-2017.4.0.2
+  js: 
+    slideshow/jquery.cycle.all.js:{}
+    slideshow/rotatingscript.js:{}
+  dependencies:
+    - core/jquery

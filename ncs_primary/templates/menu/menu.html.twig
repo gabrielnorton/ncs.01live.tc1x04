@@ -1,0 +1,97 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+
+{% import _self as menus %}
+{#
+  We call a macro which calls itself to render the full tree.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{{ menus.menu_links(items, attributes, 0, menu_name) }}
+{% macro menu_links(items, attributes, menu_level, menu_name) %}
+{% import _self as menus %}
+  {# setting up main ul classes #}
+  {% set navclasses = [] %}
+  {% if menu_name in ['ncs-primary-top-bar','ncs-primary-main'] %}
+    {% set navclasses = [
+        'navbar-nav',
+        'nav',
+        'menu_' ~ menu_name|clean_class,
+     ]
+    %}
+  {% endif %}
+
+  {# setting up toggles for topbar blocks #}
+  {# these are placed in the topbar nav via block.js #}
+  {% if menu_name == 'ncs-primary-top-bar' %}
+    {% set showlogin = 1 %}
+    {% set mobilemenu = 1 %}
+  {% endif %}
+  {% if items %}
+  {% if mobilemenu == 1 %}
+     <div class="ncs-primary-mobile-menu"></div>
+  {% endif %}
+    {# submenus to have the dropdown menu class #}
+    {% if menu_level == 0 %}
+      <ul{{ attributes.addClass(navclasses) }}>
+    {% else %}
+      <ul{{ attributes.addClass('dropdown-menu') }}>
+    {% endif %}
+    {% for item in items %}
+      {%
+        set item_classes = [
+          'menu-item',
+          item.is_expanded ? 'expanded',
+          item.is_expanded and menu_level == 0 ? 'dropdown',
+          item.in_active_trail ? 'active',
+        ]
+      %}
+        {% if menu_level == 0 and item.is_expanded %}
+          <li{{ item.attributes.addClass(item_classes) }}>
+
+          <a href="{{ item.url }}" class="dropdown-toggle disabled" data-target="#" data-toggle="dropdown" title="{{ item.title }}">{{ item.title }} 
+          </a>
+
+          <a class="mobile-dropdown">
+            <span class="fa-caret-down"></span>
+          </a>
+
+        {% else %}
+          {% if item.title == 'content' %}
+            <li class="ncs-primary-menu-content-block"> This is a content block!
+          {% else %}
+            <li{{ item.attributes.addClass(item_classes) }}>
+            {% if item.url|render matches '/^http.*/'  %}
+              {{ link(item.title, item.url, { 'target': '_blank', 'class': 'external'}) }}
+            {% else %}
+              {{ link(item.title, item.url) }}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        {# keep going #}
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endmacro %}
+

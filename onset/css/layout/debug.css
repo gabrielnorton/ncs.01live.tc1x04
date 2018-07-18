@@ -1,0 +1,27 @@
+#wrapper {
+  border:solid 1px orange;
+}
+.region {
+  border: solid 1px red;
+}
+.block {
+  border: solid 1px blue;
+}
+.block-blockgroup {
+  border: solid 1px lime;
+}
+
+[class*=' col-']{
+  background: #f2f2f2;
+}
+
+.helloworld {
+  background:red;
+}
+
+.dropdown {
+  background: #F0E68C;
+}
+.dropdown ul {
+ background: #B0C4DE;
+}

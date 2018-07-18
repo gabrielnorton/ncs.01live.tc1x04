@@ -1,0 +1,15 @@
+ul.list-unstyled.ncs-primary-trending li { 
+  background: #ffffff; 
+  border-bottom:solid 1px #e3e4e4;
+  }
+ul.list-unstyled.ncs-primary-trending li:nth-child(odd) { 
+  background: #f5f7f9; 
+}
+ ul.list-unstyled.ncs-primary-trending li a {
+     display:block;
+     padding:6px 8px;
+}
+ul.list-unstyled.ncs-primary-trending li a:hover {
+    text-decoration: none;
+    background-color:#51c4e3;
+}

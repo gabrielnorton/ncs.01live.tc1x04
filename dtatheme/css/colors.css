@@ -1,0 +1,66 @@
+/* ---------- Color Module Styles ----------- */
+
+body {
+  color: #3b3b3b;
+  background: #292929;
+}
+
+#main-wrapper {
+  border-bottom: 6px solid #E5E5E5;
+  background: #f3f3f3;
+}
+#main-wrapper {
+  border-bottom: 6px solid #E5E5E5;
+}
+ .tabs ul.primary li a.is-active {
+  background-color: #ffffff;
+}
+.tabs ul.primary li.is-active a {
+  background-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+#header {
+  background-color: #1d84c3;
+  background-image: -webkit-linear-gradient(top, #055a8e 0%, #1d84c3 100%);
+  background-image: linear-gradient(to bottom, #055a8e 0%, #1d84c3 100%);
+}
+/*  Thuy - dtadev had these commented out.
+a,
+.link {
+  color: #0071b3;
+}
+a:hover,
+a:focus,
+.link:hover,
+.link:focus {
+  color: #018fe2;
+}
+a:active,
+.link:active {
+  color: #23aeff;
+} */
+.sidebar .block {
+  background-color: #f6f6f2;
+  border-color: #f9f9f9;
+}
+.site-footer {  /*Thuy DTA theme has this as none verses the #292929 */
+  background: none !important;
+}
+
+
+/* ---------- Color Form ----------- */
+
+[dir="rtl"] .color-form .color-palette {
+  margin-left: 0;
+  margin-right: 20px;
+}
+[dir="rtl"] .color-form .form-item label {
+  float: right;
+}
+[dir="rtl"] .color-form .color-palette .lock {
+  right: -20px;
+  left: 0;
+}
+div[role="alert"] {
+  display: none;
+}

@@ -1,0 +1,42 @@
+<span{{ attributes}}></span>
+
+{% if content_type in ['video'] %}
+  {# extracting video for video #}
+  {% set UseEmbed = content.field_video_embed['#items']|length %}
+  {% set UseUpload = content.field_video_upload['#items']|length %}
+{% endif %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'media-content',
+    'clearfix'
+  ]
+%}
+
+{# this view mode is used to return a video or image only #}
+{% if content_type in ['video'] %}
+
+  {% import "themes/custom/ncs_primary/templates/macros/video.html.twig" as video %}
+    {{ video.showvideo(url, UseEmbed, UseUpload, content.field_video_embed, video_url, video_height, video_width, video_preload, video_controls, video_autoplay, video_loop, video_muted, node.field_video_poster_image.0.entity.uri.value, content.field_video, content_type, field_video_type, view_mode) }}
+{% endif %}
+
+{% if content_type in ['image'] %}
+  <div>
+    {{ content|without('body','field_byline') }}
+    {% if content.body['#items'] or content.field_byline['#title'] or content.field_byline['#text'] %}
+    <div {{ attributes.addClass(classes) }} >
+        {{ content.body }}
+        {{ content.field_byline }}
+    </div>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if content_type in ['geolocation', 'podcast'] %}
+  {{ content }}
+{% endif %}

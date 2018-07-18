@@ -1,0 +1,229 @@
+
+.node--view-mode-full.node--type-story header {
+	margin: 0 0 15px 15px;
+}
+.node--view-mode-full.node--type-story .field--type-image .field__item { /*Thuy - RC1 field-item is now field__item*/
+	width: 90%;
+    height: 100%;
+    display:block;
+	margin: 0 auto;
+}
+
+.node--view-mode-full.node--type-story .field-node--field-byline {
+	width: 90%;
+	float: right;
+}
+
+.node--view-mode-full.node--type-story .field-node--body .field__item {
+	width: 90.5%;
+    float: right;
+}
+.field-node--field-in-page-image .field__items {
+    float: right;
+    width: 95%;
+}
+
+
+.node--view-mode-full.node--type-story .field--type-image .field__item img { /*Thuy - RC1 field-item is now field__item*/
+	width: 100%;
+    height: auto;
+}
+/* thuy add for blog post to have width 100% too */
+.node--view-mode-full.node--type-blog-post .field--type-image .field__item img { /*Thuy - RC1 field-item is now field__item*/
+	width: 100%;
+    height: auto;
+}
+.node--view-mode-full.node--type-story .field--type-image {
+	float: none;
+	display:block;
+	margin: 0 auto;
+}
+
+.node--view-mode-full.node--type-story .field__item > img {  
+	float: none;
+	display:block;
+	margin: 0 auto;
+	/*padding: 2em;*/
+}
+
+/*.node--view-mode-full.node--type-story .field-item > p, Thuy - RC1 field-item is now field__item*/
+.node--view-mode-full.node--type-story .field__item > p,
+.node--view-mode-full.node--type-story .field-node--field-story-tags {
+	/*width: 85%;*/
+	margin: auto;
+	padding-bottom: 1em;
+	padding-left: 1px;
+}
+
+.node--view-mode-full.node--type-story .field-node--field-story-tags {
+	width: 90%;
+	float: right;
+}
+
+.node--type-story #page-title {
+	width: 90%;
+	float: right;
+}
+/*thuy change field-node--title to field--name-title */
+.field.field--name-title.field--type-string.field--label-hidden {
+	display: block;
+}
+
+.node--view-mode-full.node--type-story .node__meta {
+	margin-left: 50px;
+	display:block
+}
+
+.node--view-mode-full.node--type-story .field-node--field-comments {
+	/*padding: 1em;*/
+	width: 90%;
+	margin: auto;
+	float: right;
+}
+
+.node--view-mode-full.node--type-story .cke_top.cke_reset_all {
+	visibility: hidden;
+	position: absolute;
+}
+
+.node--view-mode-full.node--type-story .cke_bottom.cke_reset_all {
+	visibility: hidden;
+	position: absolute;
+}
+
+.node--view-mode-full.node--type-story .filter-wrapper.js-form-wrapper.form-wrapper {
+	visibility: hidden;
+	position: absolute;
+}
+
+.node--view-mode-full.node--type-story .comment header { /* top element */
+	margin: 0;
+	padding-bottom: 10px;
+	display: block;
+	position: relative;
+}
+
+.node--view-mode-full.node--type-story .comment__permalink.comment__submitted__data {
+	visibility: hidden;
+	position: absolute;
+}
+
+.node--view-mode-full.node--type-story .comment__text { /* bottom element */
+	border: none;
+	border-bottom: 1px solid #d3d7d9;
+	display: block;
+	position: relative;
+	padding: 0;
+	padding-top: 5px;
+	overflow: hidden;
+}
+
+.comment__text::before {
+	border: none;
+}
+
+.node--view-mode-full.node--type-story .comment { /* container */
+	margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.node--view-mode-full.node--type-story .comment .field .field-label {
+	visibility: hidden;
+	position: absolute;
+}
+
+.node--view-mode-full.node--type-story .comment__text .permalink {
+	font-weight: bold;
+}
+
+.node--view-mode-full.node--type-story .comment__text h3 {
+	margin: 0;
+}
+
+.node--view-mode-full.node--type-story .comment__footer .links.inline {
+	float: right;
+	display: table;
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+
+.node--view-mode-full.node--type-story .comment__footer .links.inline li {
+	float: left;
+    padding: 10px;
+    background-color: lightgray;
+}
+.node--view-mode-full.node--type-story .comment__footer .links.inline li:hover {
+    background-color: #CEEAF8;
+}
+.node--view-mode-full.node--type-story .comment__footer {
+	position: relative;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.node--view-mode-full.node--type-story .field-node--field-comments h2.title:first-of-type {
+	font-weight: bold;
+	border-bottom: 1px solid #d3d7d9;
+}
+
+.node--view-mode-full.node--type-story #comment-form #edit-name {
+	margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+
+.node--type-story .tabs .visually-hidden {
+	display: inline;
+	position: initial !important;
+	visibility: hidden;
+}
+
+.node--type-story nav.tabs {
+	/*width: 90%;*/
+	/*float: left; Float makes the tabs unclickable for some reason. */
+}
+
+.node--type-story nav.tabs ul.primary {
+	border-collapse: collapse;
+    height: auto;
+    line-height: normal;
+    padding: 0 3px;
+    margin: 0;
+    overflow: hidden;
+    border-bottom: 1px solid grey;
+    white-space: nowrap;
+}
+
+.node--type-story nav.tabs ul.primary li {
+	vertical-align: bottom;
+	float: left;
+}
+
+.node--type-story nav.tabs ul.primary li a {
+	width: 40px;
+	text-align: center;
+}
+
+.node--type-story nav.tabs ul.primary li a span.visually-hidden {
+	display: none;
+}
+
+.node--type-gallery .node--type-gallery .field-node--field-galleryimages {
+	float: none;
+}
+
+.node--type-gallery .node--type-gallery {
+	float: right;
+	width: 90%;
+}
+
+
+.node--type-gallery .field-node--field-galleryimages img {
+    display: block;
+    height: auto;
+    max-width: 400px;
+}

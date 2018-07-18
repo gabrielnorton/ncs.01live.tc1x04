@@ -1,0 +1,48 @@
+{% macro showvideo(url, use_embed, use_upload, field_embed, video_url, video_height, video_width, video_preload, video_controls, video_autoplay, video_loop, video_muted, file_uri, field_video, content_type, field_video_type, view_mode, twigdebug) %}
+
+{% if debugtwig == 1 %}
+<pre>
+-- BEGIN DEBUG OUTPUT--<br>
+url: {{ url }} <br>
+use_embed: {{ use_embed }} <br>
+use_upload: {{ use_upload }} <br>
+field_embed: {{ field_embed }} <br>
+video_url: {{ video_url }} <br>
+video_height: {{ video_height }} <br>
+video_width: {{ video_width }} <br>
+video_preload: {{ video_preload }} <br>
+video_controls: {{ video_controls }} <br>
+video_autoplay: {{ video_autoplay }} <br>
+video_loop: {{ video_loop }} <br>
+video_muted: {{ video_muted }} <br>
+file_uri: {{ file_uri }} <br>
+field_video: {{ field_video }} <br>
+content_type: {{ content_type }} <br>
+field_video_type: {{ field_video_type }} <br>
+view_mode: {{ view_mode }} <br>
+-- END DEBUG OUTPUT --
+</pre>
+{% endif %}
+
+{% if use_embed == '1' %}
+  <div class="embedded-video">
+    {{ field_embed|render|unwrap }}
+  </div>
+{% endif %}
+
+{% if use_upload == '1' %}
+  
+  {% if view_mode == 'teaser' %}
+    <figure><img src="{{ file_url(file_uri) }}"/></figure>
+  {% elseif video_url %}
+    <div class="upload-video" style="padding-bottom:{{ (video_height / video_width)*100 }}%">
+      <video preload="{{ video_preload }}" {{ video_controls ? 'controls' : '' }}
+         {{ video_autoplay ? 'autoplay' : '' }} {{ video_loop ? 'loop' : '' }}
+         {{ video_muted ? 'muted' : '' }} poster="{{ file_url(file_uri) }}">
+      <source src="{{ video_url }}"/>
+      </video>
+    </div><!--//.uploaded-video-->
+  {% endif %}
+{% endif %}
+
+{% endmacro %}

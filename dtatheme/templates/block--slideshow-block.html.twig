@@ -1,0 +1,42 @@
+{% extends "@classy/block/block.html.twig" %}
+{#
+/**
+ * @file
+ * thuytheme's theme implementation for a search form block. Extends Classy's
+ * search form block template.
+ *
+ * Available variables:
+ * - content: The content of this block.
+ * - content_attributes: A list of HTML attributes applied to the main content
+ *   tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ * @see search_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+<!-- Begin OUTPUT from 'themes/custom/dtatheme/templates/block--slideshow-block.html.twig' -->
+{% block content %}
+
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    <div{{ content_attributes.addClass('content') }}>
+      {{ content }}
+    </div>
+  <div{{ content_attributes.addClass('slideshow') }}>
+    <div class="slideshow">
+		<img src="http://malsup.github.com/images/beach1.jpg" width="200" height="200" />
+		<img src="http://malsup.github.com/images/beach2.jpg" width="200" height="200" />
+		<img src="http://malsup.github.com/images/beach3.jpg" width="200" height="200" />
+		<img src="http://malsup.github.com/images/beach4.jpg" width="200" height="200" />
+		<img src="http://malsup.github.com/images/beach5.jpg" width="200" height="200" />
+  </div>
+</div>
+{% endblock %}
+<!-- End OUTPUT from 'themes/custom/dtatheme/templates/block--slideshow-block.html.twig' -->

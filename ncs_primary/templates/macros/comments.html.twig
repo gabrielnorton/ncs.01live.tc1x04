@@ -1,0 +1,37 @@
+{% macro rendercomments( logged_in, links, comments, comment_status, comment_status_code, comment_count, view_mode, debugtwig) %}
+
+<section class="comments">
+
+  <h4 class="field__label">Comments</h4>
+
+  <div class="comments-container">
+    {# @to-do: add setting to store comment abuse notice #}
+    {# @to-do: add terms of abuse page #}
+
+      {% if comment_status == 'hidden' %}
+        {# state the hidden comments message #}
+        <p>Commenting is not enabled for this story.</p>
+
+      {% elseif comment_status == 'closed' %}
+        {# state the closed comments message #}
+        <p>Commenting has been closed for this story. <br/>
+        <i class="fa fa-commenting" aria-hidden="true"></i> {{ comment_count|default('0') }} comments </p>
+        {{ comments }}
+
+      {% elseif comment_status == 'open'%}
+         {# state the normal terms #}
+        <p>Comments are open. Be civil. <br />
+         <i class="fa fa-commenting" aria-hidden="true"></i> {{ comment_count|default('0') }} comments </p>
+
+          {% if not logged_in %}
+            {{ links }}
+          {% endif %}
+
+          {{ comments }}
+
+      {% endif %}
+
+  </div>
+</section>
+
+{% endmacro %}

@@ -1,0 +1,17 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+<div{{ attributes.addClass(classes) }}>
+
+    {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+    {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+
+</div>

@@ -1,0 +1,39 @@
+name: ncs_primary
+type: theme
+base theme: classy
+description: 'Primary Theme'
+package: Custom
+version: pri_2017.1.4
+core: 8.x
+onset_version: 2017-3.3r28293
+libraries:
+  - ncs_primary/bootstrap
+  - ncs_primary/navigation
+  - ncs_primary/loginmodal
+  - ncs_primary/global-styling
+  - ncs_primary/color
+libraries-override:
+  classy/base: false
+  socialmedianode/socialmedianode_style:
+    css:
+      theme:
+        css/social-media-icon.css: false
+ckeditor_stylesheets:
+  - css/ckeditor/elements.css
+  - css/ckeditor/captions.css
+  - css/ckeditor/table.css
+regions:
+  top_bar: 'Top Bar'
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  featured_top: 'Featured top'
+  breadcrumb: Breadcrumb
+  left_content: 'Left Content'
+  content: Content
+  right_content: 'Right Content'
+  featured_bottom: 'Featured bottom'
+  footer: Footer

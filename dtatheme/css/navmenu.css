@@ -1,0 +1,56 @@
+.region-primary-menu .menu a{
+	border-radius: 0px;
+	background-color: transparent;
+}
+
+.region-primary-menu .menu-item{
+  padding: 0 0px;
+  margin: 0 0px;
+}
+
+.contextual-reigon .block-menu .navigation{
+	background-color: rgba(255,255,255, 0.7);
+}
+#block-dtatheme-main-menu{
+  background-color: #FFFFFF; /*rgba(255,255,255, 0.7); Thuy - change the green #529600 menu to white */
+}
+
+.region-primary-menu{
+	border-top: 1px solid white; 
+	border-bottom: 2px solid black; 
+}
+
+#header .layout-container{
+  max-width: 100%;
+}
+
+#block-dtatheme-main-menu  ul{
+  margin-left: 8%;
+}
+#block-dtatheme-main-menu  ul li{
+  font-size: 14px;
+}
+
+#logo{
+  margin-left: 15%;
+}
+
+#block-dtatheme-account-menu .clearfix.menu{
+  margin-right: 15%;
+}
+
+.section.layout-container.clearfix .region.region-header{
+  margin-right: 10%;
+} 
+/*
+.menu-item--expanded ul>.is-active a{
+	background-color: #529600;
+}
+
+.menu-item>.is-active{
+	background-color: #529600;
+}
+
+.menu-item--expanded {
+	background-color: #529600;
+}  */

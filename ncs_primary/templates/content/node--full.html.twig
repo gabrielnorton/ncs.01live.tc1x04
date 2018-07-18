@@ -1,0 +1,207 @@
+{% set view_mode = view_mode|clean_class %}
+
+{% if content_type in ['story'] %}
+  {# extracting media for video #}
+  {% set UseVideo = node.field_use_video.value ? '1' : '0' %}
+  {% set UsePhoto = node.field_use_video.value ? '0' : '1' %}
+  {% set MainImageCount = content.field_main_image_reference['#items']|length %}
+  {% set hasVideo = content.field_video['#items']|length %}
+  {% set ExtraPicsCount = content.field_image_reference_list['#items']|length %}
+  {% set UseEmbed = node.field_use_embed.value %}
+  {% set UseUpload = node.field_use_upload.value %}
+  {# checking for sidebar features #}
+  {% set hasFactboxImage = content.field_factbox_image['#items']|length %}
+  {% set hasFactboxBody = content.field_factbox_body['#items']|length %}
+  {% set hasTwitter = content.field_twitter_widget['#items']|length %}
+  {% set hasRelated = content.field_related_onset_content['#items']|length %}
+  {% set hasPoll = content.field_poll_in_story['#items']|length %}
+  {% set hasGeolocation = content.field_geolocation_reference['#items']|length %}
+  {% if hasFactboxImage or hasFactboxBody or hasTwitter or hasRelated or hasPoll or hasGeolocation or hasVideo > 0 %}
+    {% set show_features = 1 %}
+  {% endif %}
+{% endif %}
+
+{# extracting image for story, podcast #}
+{% set MainImageCount = content.field_main_image_reference['#items']|length %}
+
+{# extracting image for blog #}
+{% set ImageRefCount = content.field_image_reference['#items']|length %}
+
+{% if content_type in ['video'] %}
+  {# extracting video for video #}
+  {% set UseEmbed = content.field_video_embed['#items']|length %}
+  {% set UseUpload = content.field_video_upload['#items']|length %}
+{% endif %}
+
+{% if debugtwig == 1 %}
+  <pre>
+  content_type:      {{ content_type }}
+  UseVideo:          {{ UseVideo }}
+  UsePhoto:          {{ UsePhoto }}
+  UseEmbed:          {{ UseEmbed }}
+  UseUpload:         {{ UseUpload }}
+  MainImageCount:    {{ MainImageCount }}
+  ExtraPicsCount:    {{ ExtraPicsCount }}
+  hasVideo:          {{ hasVideo }}
+  hasFactboxImage:   {{ hasFactboxImage }}
+  hasFactboxBody:    {{ hasFactboxBody }}
+  hasTwitter:        {{ hasTwitter }}
+  hasRelated:        {{ hasRelated }}
+  hasPoll:           {{ hasPoll }}
+  </pre>
+{% endif %}
+
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+    'clearfix'
+  ]
+%}
+
+{# set up the node to have 2 columns if extra features exist #}
+{% set content_class = [
+    'node--content',
+    show_features ? 'col-lg-8 col-lg-push-4' : 'no-features',
+  ]
+%}
+
+{% set left_content_attributes = create_attribute() %}
+{% set left_content_class = [
+    'node-features',
+    show_features ? 'col-lg-4 col-lg-pull-8' : 'hidden',
+    'article-media',
+  ]
+%}
+
+<article{{ attributes.addClass(classes) }}>
+
+  {# render the label (title) or headline a/b depending on content type #}
+  {{ title_prefix }}
+  {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+  {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+  {{ title_suffix }}
+    
+  {% if display_submitted %}
+    {% import "themes/custom/ncs_primary/templates/macros/byline.html.twig" as byline %}
+    {{ byline.renderbyline( content.field_byline, content.field_byline_attribute, author_name, content_type) }}
+  {% endif %}
+
+  {% if display_submitted %}
+    {% set created_date = node.getCreatedTime %}
+    {% set changed_date = node.getChangedTime %}
+    {% set publish_on_date =  publish_on|default(0000000001)|date('U') %}
+    {% import "themes/custom/ncs_primary/templates/macros/date.html.twig" as dates %}
+    {{ dates.render_date( created_date, changed_date, publish_on, publish_on_date, 1, debugtwig, custom_labels.published_label, custom_labels.modified_label) }}
+  {% endif %}
+
+  {% if display_submitted %}
+    <div id="ncs-social-media" class="article-social-media">
+      <!-- this block is populated with EasySocial block via block.js -->
+    </div>
+  {% endif %}
+
+  <div class="article-media">
+    {% if content_type in ['video'] %}
+
+      {% import "themes/custom/ncs_primary/templates/macros/video.html.twig" as video %}
+      {{ video.showvideo(url, UseEmbed, UseUpload, content.field_video_embed, video_url, video_height, video_width, video_preload, video_controls, video_autoplay, video_loop, video_muted, node.field_video_poster_image.0.entity.uri.value, content.field_video, content_type, field_video_type) }}
+
+    {% elseif content_type in ['photo_gallery', 'gallery','classified_ad', 'blog_post'] %}
+
+      {% import "themes/custom/ncs_primary/templates/macros/slideshow.html.twig" as slides %}
+      {{ slides.render_slideshow('single_item', 'top', content.field_main_image_reference, content.field_image_reference_list, content.field_ugc_images, content.field_image_reference, content.field_teaser_images) }}
+
+    {% elseif content_type in ['story'] %}
+        {% import "themes/custom/ncs_primary/templates/macros/slideshow.html.twig" as slides %}
+            {{ slides.render_slideshow('single_item', 'bottom', content.field_main_image_reference, content.field_image_reference_list, content.field_ugc_images, content.field_image_reference, content.field_teaser_images) }}
+    {% else %}
+
+       {{ content.field_main_image_reference }}
+       {{ content.field_image_reference }}
+       {{ content.field_ugc_main_image }}
+       {{ content.field_main_image }}
+
+    {% endif %}
+  </div>
+
+  <div{{ content_attributes.addClass(content_class) }}>
+
+    {{ content.body }}
+
+    {% if content_type in ['story'] %}
+      {{ content.field_podcast_reference }}
+      {{ content.field_content_tags }}
+      {{ content.field_source }}
+    {% endif %}
+
+    {% if content_type in ['event'] %}
+    <div class="node-features">
+      {{ content.field_event_date }}
+      {{ content.field_contact_information }}
+      {{ content.field_content_category }}
+      {{ content.field_venue }}
+      {{ content.field_geolocation_reference }}
+      {{ content.field_related_content }}
+      {{ content.field_website_address }}
+    </div>
+    {% endif %}
+
+    {% if content_type in ['blog_post'] %}
+    <div class="node-features">
+      {{ content.field_geolocation_reference }}
+      {{ content.field_twitter_widget }}
+      {{ content.field_content_tags }}
+    </div>
+    {% endif %}
+
+    {% if content_type in ['photo_gallery'] %}
+    <div class="node-features">
+      {{ content.field_multiple_images }}
+      {{ content.field_content_category }}
+      {{ content.field_geolocation_reference }}
+    </div>
+    {% endif %}
+
+    {% if content_type in ['classified_ad'] %}
+      {{ content.field_contact_information }}
+      {{ content.field_geolocation_reference }}
+    {% endif %}
+
+    {% if content_type in ['podcast'] %}
+      {{ content.field_podcast_upload }}
+      {{ content.field_geolocation_reference }}
+    {% endif %}
+
+    {% if content_type in ['geolocation', 'image', 'video'] %}
+      {{ content.field_main_geolocation }}
+      {{ content.field_geolocation_reference }}
+    {% endif %}
+
+  </div>
+
+  {% if content_type in ['story'] %}
+    <div {{ left_content_attributes.addClass(left_content_class) }}>
+      {% if hasVideo %}
+        {{ content.field_video }}
+      {% endif %}
+      {{ content.field_factbox_image }}
+      {{ content.field_factbox_body }}
+      {{ content.field_geolocation_reference }}
+      {{ content.field_twitter_widget }}
+      {{ content.field_related_onset_content }}
+      {{ content.field_poll_in_story }}
+    </div>
+  {% endif %}
+
+</article>
+
+{# begin render comments #}
+{% if content.field_comments %}
+  {% import "themes/custom/ncs_primary/templates/macros/comments.html.twig" as comments %}
+  {{ comments.rendercomments( logged_in, content.links, content.field_comments, comment_status, comment_status_code, comment_count, view_mode, debugtwig) }}
+{% endif %}

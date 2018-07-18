@@ -1,0 +1,39 @@
+{% set view_mode = view_mode|clean_class %}
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{{ attach_library('ncs_primary/gallerygrid') }}
+{{ attach_library('ncs_primary/user_uploaded_images') }}
+
+<div{{ attributes.addClass(classes) }}>
+  <div class="thumbnail">
+    <a href="{{ url }}">
+      {{ content.field_ugc_images[0] }}
+    </a>
+
+    {% import "themes/custom/ncs_primary/templates/macros/byline.html.twig" as byline %}
+    {{ byline.renderbyline( content.field_byline, content.field_byline_attribute, author_name, content_type) }}
+
+  {# render the label (title) or headline a/b depending on content type #}
+  {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+  {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+
+  <!--
+  {% set created_date = node.getCreatedTime %}
+  {% set changed_date = node.getChangedTime %}
+  {% import "themes/custom/ncs_primary/templates/macros/date.html.twig" as dates %}
+  {{ dates.render_date( created_date, changed_date, publish_on, publish_on_date, 1, debugtwig, custom_labels.published_label, custom_labels.modified_label ) }}
+  -->
+
+  </div>
+</div>
+
+

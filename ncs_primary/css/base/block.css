@@ -1,0 +1,26 @@
+.block .content {
+  margin-bottom:10px;
+}
+.block.block-mini-temp .content {
+  margin-bottom:0px;
+}
+
+.region-right-content .block .block-title,
+.region-left-content .block .block-title,
+.region-featured-bottom .block .block-title,
+.ncs_primary_front_news .block-title,
+.node-features .field .field__label,
+.ncs_primary_featured_updates.block .block-title,
+.group_title > .block-title {
+  border-bottom: solid 2px #51c4e3;
+  padding-bottom: 4px;
+}
+
+/* style the main group title */
+.group_title > div.content > .block .block-title {
+  font-weight: bold;
+}
+
+.region-right-content .block {
+  margin-bottom: 25px;
+}

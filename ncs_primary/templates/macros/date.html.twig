@@ -1,0 +1,29 @@
+{% macro render_date(created_date, changed_date, publish_on, publish_on_date, show_updated, debugtwig, published_label, modified_label) %}
+
+  {% if debugtwig == 1 %}
+    <pre>
+      published_label: {{ published_label }}
+      modified_label: {{ modified_label }}
+      created_date: {{ created_date }}
+      changed_date: {{ changed_date }}
+      publish_on_date: {{ publish_on_date }}
+      publish_on:  {{ publish_on }}
+      updated: {{ updated }}
+    </pre>
+  {% endif %}
+
+  <div class="node--date">
+    {% if publish_on %}
+      <span class="published">{{ published_label }} {{ publish_on_date|date('U')|format_date('short') }} </span>
+      {% if date(changed_date|date('Y-m-d H:i:s')) > date(publish_on|date('Y-m-d H:i:s')) %}
+        <span class="updated">{{ modified_label }} {{ changed_date|format_date('short') }} </span>
+      {% endif %}
+    {% else %}
+      <span class="published">{{ published_label }} {{ created_date|date('U')|format_date('short') }} </span>
+      {% if date(changed_date|date('Y-m-d H:i:s')) > date(created_date|date('Y-m-d H:i:s')) %}
+        <span class="updated">{{ modified_label }} {{ changed_date|format_date('short') }} </span>
+      {% endif %}
+    {% endif %}
+  </div>
+
+ {% endmacro %}

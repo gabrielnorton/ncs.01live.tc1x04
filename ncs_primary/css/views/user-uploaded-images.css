@@ -1,0 +1,11 @@
+.view-id-user_uploaded_images .thumbnail img {
+  height: 120px;
+}
+
+.view-id-user_uploaded_images h2  { 
+  margin: 0;
+}
+
+.view-id-user_uploaded_images h2 a span.field--name-title {
+  font-size: 20px;
+}

@@ -1,0 +1,207 @@
+{#
+/**
+ * @file
+ * Theme override for the basic structure of a single Drupal page.
+ *
+ * Variables:
+ * - logged_in: A flag indicating if user is logged in.
+ * - root_path: The root path of the current page (e.g., node, admin, user).
+ * - node_type: The content type for the current node, if the page is a node.
+ * - head_title: List of text elements that make up the head_title variable.
+ *   May contain or more of the following:
+ *   - title: The title of the page.
+ *   - name: The name of the site.
+ *   - slogan: The slogan of the site.
+ * - page_top: Initial rendered markup. This should be printed before 'page'.
+ * - page: The rendered page markup.
+ * - page_bottom: Closing rendered markup. This variable should be printed after
+ *   'page'.
+ * - db_offline: A flag indicating if the database is offline.
+ * - placeholder_token: The token for generating head, css, js and js-bottom
+ *   placeholders.
+ * - date_published: Published date in ISO 8601 format.
+ * - logo_url: Path for the theme logo.
+ *
+ * @see template_preprocess_html()
+ */
+#}
+<!doctype html>
+<html amp{{ html_attributes|without('xmlns:article', 'xmlns:book', 'xmlns:product', 'xmlns:profile', 'xmlns:video') }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token|raw }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+      <script src="/core/assets/vendor/jquery/jquery.min.js?v=2.1.4" async></script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "http://schema.org",
+        "@type": "NewsArticle",
+        "headline": "{{ head_title|safe_join(' | ') }}",
+        "datePublished": "{{ date_published }}"{% if logo_url %},
+        "image": [
+          "{{ logo_url }}"
+        ]{% endif %}
+      }
+    </script>
+    <style amp-boilerplate>{% spaceless %}{% include '@amptheme/amp-css/amp-boilerplate-styles-min.html.twig' %}{% endspaceless %}</style><noscript><style amp-boilerplate>{% spaceless %}{% include '@amptheme/amp-css/amp-boilerplate-styles-noscript-min.html.twig' %}{% endspaceless %}</style></noscript>
+    <style amp-custom>
+      {% include '@ampsubtheme_example/amp-css/amp-custom-styles.html.twig' %}
+      {% include '@volt/amp-css/scrollamp-css.html.twig' %}
+      {% include '@volt/amp-css/amp-header-css.html.twig' %}
+      {% include '@volt/amp-css/bootstrap-css.html.twig' %}
+      {% include '@volt/amp-css/somecsschange.html.twig' %}
+    </style>
+    {# Only JS from an AMP library is processed in the placeholder. #}
+    <js-placeholder token="{{ placeholder_token|raw }}">
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+
+  </head>
+  <body{{ attributes }}>
+
+    <a href="#main-content" class="visually-hidden focusable amp-skip-link">
+      {{ 'Skip to main content'|t }}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <!-- Menu dropdown -->
+    <script type="text/javascript">
+        var elements = document.getElementById('block-mainmenu-2').getElementsByTagName('ul')[0];
+    var flag = 0;
+        var sub = 0;
+        var items = elements.getElementsByTagName('li');
+        for (i = 0; i < items.length; ++i) {
+            if (i < 1) {
+                items[i].style.display = 'block';
+            }
+            else {
+                items[i].style.display = 'none';
+            }
+        }
+        document.getElementById("block-mainmenu-2").addEventListener("click", function (event) {
+            var expand;
+            var issub = event.target.childElementCount > 1 ? true : false;
+            if (issub) {
+                var items = event.target.getElementsByTagName('li');
+                if (sub == 0) {
+                    expand = true;
+                    sub = 1;
+                }
+                else if (sub == 1) {
+                    expand = false;
+                    sub = 0;
+                }
+            }
+            else {
+                var items = elements.getElementsByTagName('li');
+                if (flag == 0) {
+                    expand = true;
+                    flag = 1;
+                }
+                else if (flag == 1) {
+                    expand = false;
+                    flag = 0;
+                }
+            }
+            if (expand) {
+                event.preventDefault();
+                for (i = 0; i < items.length; ++i) {
+                    items[i].style.display = 'block';
+                    if (items[i].getElementsByTagName('ul').length > 0) {
+                        i = i + items[i].getElementsByTagName('ul')[0].childElementCount;
+                        sub = 0;
+                    }
+                }
+            }
+            else {
+                if (issub) {
+                    var i = 0;
+                }
+                else {
+                    var i = 1
+                }
+                for (i; i < items.length; ++i) {
+					items[i].style.display='none';
+			}
+                if (issub && sub === 1) {
+                    sub = 0;
+                }
+                else if (!issub && flag === 1) {
+                    flag = 0;
+                }
+		}
+
+		});</script>
+
+<!-- AB heading for views  -->
+<script>
+var views = document.getElementsByClassName('views-element-container');
+for (var i = 0; i < views.length; ++i){
+	var head_a = views[i].getElementsByClassName('abheading_a');
+	var head_b = views[i].getElementsByClassName('abheading_b');
+	var titles = views[i].getElementsByClassName('abheading_title');
+	var checkboxes = views[i].getElementsByClassName('abheading_checkbox');
+	for(var j = 0; j < head_a.length; ++j){
+		//console.log(head_a[j]);
+		head_a[j].setAttribute('class', 'hidden abheading_a');
+		head_b[j].setAttribute('class', 'hidden abheading_b');
+		checkboxes[j].setAttribute('class', 'hidden abheading_checkbox');
+		var aorb = Math.floor(Math.random()*2)+1;
+
+		if(aorb===1 && head_b[j].innerHTML!=""){
+	 		titles[j].childNodes[0].innerHTML=head_b[j].innerHTML;
+
+	 	}else{
+	 		titles[j].childNodes[0].innerHTML=head_a[j].innerHTML;
+
+	 	}
+	 	titles[j].addEventListener("click", changeCookie);
+	}
+}
+
+ function changeCookie(){
+ 	document.cookie="ab_title="+this.childNodes[0].innerHTML;
+ }
+
+
+</script>
+
+<!-- AB heading for node display  -->
+<script type="text/javascript">
+var node_title = document.getElementsByClassName('js-quickedit-page-title')[0];
+var cookies;
+
+function readCookie(name,c,C,i){
+    if(cookies){ return cookies[name]; }
+
+    c = document.cookie.split('; ');
+    cookies = {};
+
+    for(i=c.length-1; i>=0; i--){
+       C = c[i].split('=');
+       cookies[C[0]] = C[1];
+    }
+    if (name in cookies) {
+        cookies[name] = cookies[name].split('||')[1];
+    }
+    return cookies[name];
+}
+//console.log(readCookie('ab_title'));
+var cookieVal = readCookie('ab_title');
+if (cookieVal != 'undefined') {
+    node_title.innerHTML = cookieVal;
+}
+if(node_title.innerHTML=='undefined'){
+    var head_a = document.getElementById('block-volt-content').getElementsByClassName('rest-of-node')[1].getElementsByTagName('div')[2];
+  node_title.innerHTML=head_a.innerHTML;
+  head_a.style.display = "none";
+}
+var headlines = document.getElementById('block-volt-content').getElementsByClassName('rest-of-node')[1];
+headlines.getElementsByClassName('abheading_a').length > 0 ? headlines.getElementsByClassName('abheading_a')[0].style.display = 'none' : null;
+headlines.getElementsByClassName('abheading_b').length > 0 ? headlines.getElementsByClassName('abheading_b')[0].style.display = 'none' : null;
+
+</script>
+
+
+  </body>
+</html>

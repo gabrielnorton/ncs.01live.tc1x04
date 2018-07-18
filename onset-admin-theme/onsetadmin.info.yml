@@ -1,0 +1,21 @@
+name: Onset Admin Theme
+type: theme
+description: Onset Admin Theme
+base theme: seven
+package: Custom
+core: 8.x
+version: 8.x-2017.4.0.2
+regions:
+  header: 'Header'
+  pre_content: 'Pre-content'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  sidebar_first: 'First sidebar'
+regions_hidden:
+  - sidebar_first
+libraries:
+  - onsetadmin/global-styling

@@ -1,0 +1,20 @@
+uuid: f5ba92d4-9ea1-477b-8104-4ed329c8ee86
+langcode: en
+status: true
+dependencies:
+  theme:
+    - onset
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: onset_page_title
+theme: onset
+region: '-1'
+weight: -47
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

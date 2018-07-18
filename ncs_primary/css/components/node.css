@@ -1,0 +1,179 @@
+/* headline */
+
+/* byline */
+article .field--name-field-byline-attribute {
+  color: #8c8f90;
+}
+
+/* date */
+article div.node--date {
+    padding:8px 0;
+}
+
+article span.published {
+    color: #23849e;
+    display:block;
+    padding-left:10px;
+    border-left: solid 1px #cccccc;
+}
+article span.updated {
+    color: #464a50;
+    display:block;
+    padding-left:10px;
+    border-left: solid 1px #cccccc;
+    font-weight:bold;
+}
+
+/* media */
+/* embed media alignment */
+article.node--view-mode-full .node--content .embedded-entity.align-center {
+  text-align:center;
+}
+article.node--view-mode-full .node--content .embedded-entity {
+    margin-bottom:20px;
+    padding: 10px;
+    background:#f3f3f5;
+
+}
+
+/* main media - image */
+article.node--view-mode-full .article-media {
+    margin-bottom: 15px;
+}
+
+article.node--view-mode-full .article-media .field--name-field-main-image {
+    text-align: center;
+}
+
+article.node--view-mode-full .article-media img {
+    margin: 0 auto;
+}
+
+article.node--view-mode-full .node--content .embedded-entity .field--name-body,
+article.node--view-mode-full .node--content .embedded-entity .field--name-field-byline {
+    text-align:left;
+    padding: 0;
+}
+
+/* extra pictures */
+article.node--view-mode-full .field--name-field-image-reference-list > .field__items > .field__item,
+article.node--view-mode-full .field--name-field-teaser-images {
+    margin-bottom: 15px;
+}
+
+article.node--view-mode-full .article-media .media-content {
+    background:#f5f5f5;
+    padding: 15px;
+    text-align: left;
+    font-size: small;
+}
+
+article.node--view-mode-full .node--content .embedded-entity.align-left {
+    max-width: 320px;
+    margin-right: 30px;
+    margin-bottom: 20px;
+}
+
+article.node--view-mode-full .node--content .embedded-entity.align-right {
+  max-width: 320px;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}
+
+/* this class is added via jQuery when the main image is less than 800px wide */
+/* see node.js */
+@media(min-width: 1000px) {
+  article.node--view-mode-full.node--type-story .article-media-align-left {
+      /*
+      width: 40%;
+      float: left;
+      margin-right: 30px;
+      margin-bottom: 30px;
+      */
+  }
+}
+
+/* no features */
+article.node--view-mode-full .node--content.no-features {
+    padding-top: 15px;
+}
+
+/* left node-features rail */
+article.node--view-mode-full .node-features .embedded-video {
+    margin-bottom: 20px;
+}
+
+/* body */
+article.node--view-mode-full .node--content .field--name-body {
+}
+
+/* related */
+.node-related-content-title {
+    border-bottom: solid 2px #51c4e3;
+    padding-bottom: 4px;
+}
+.field--name-field-related-onset-content {
+    margin-bottom: 25px;
+}
+
+/* poll */
+.field--name-field-poll-in-story .field__label {
+    border-bottom: solid 2px #51c4e3;
+    padding-bottom: 4px;
+    font-size: 18px;
+}
+h3.poll-question {
+    font-size: 18px;
+}
+.vote-form .form-item legend {
+    display: none;
+}
+
+/* comments */
+article .field--name-field-comments textarea {
+  width: 100%;
+}
+
+article div.node__links ul.links.inline {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.comments-container ul.links {
+    margin: 20px 0;
+}
+
+/* twitter */
+.dta-twitter-item-body span {
+position: inherit !important;
+ }
+
+/* related content */
+.node--view-mode-ncs-primary-headlines .node-title .abheading_title,
+.node--view-mode-ncs-primary-headlines .node-title .field--name-title,
+.node--view-mode-ncs-primary-headlines .node-title .abheading_title > a,
+.node--view-mode-ncs-primary-headlines .node-title .field--name-title a {
+    font-family: sans-serif;
+    color: #3d3d40;
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: bold;
+}
+
+.node--view-mode-ncs-primary-headlines .node-title a:hover,
+.node--view-mode-ncs-primary-headlines .node-title a:hover span,
+.node--view-mode-ncs-primary-headlines .node-title a:focus,
+.node--view-mode-ncs-primary-headlines .node-title a:active {
+    color:#358ea7;
+    text-decoration:none;
+}
+
+/* factboxes */
+article.node--view-mode-full .field--name-field-factbox-body {
+    text-align: left;
+    margin: 20px 0 5px 0;
+}
+
+article.node--view-mode-full .field--name-field-factbox-image img {
+    margin: 0 auto;
+}

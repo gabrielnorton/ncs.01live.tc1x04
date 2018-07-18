@@ -1,0 +1,16 @@
+.view-id-ncs_primary_breaking article.node--category--breaking {
+  border-top:solid 4px #c51b1b;
+  padding:20px;
+}
+.view-id-ncs_primary_breaking article.node--category--breaking  .node--date {
+  display:none;
+}
+
+.view-id-ncs_primary_breaking .field--name-body:after {
+  content: '...';
+  display:inline-block;
+}
+
+.view-id-ncs_primary_breaking article.node--category--breaking .teaser-image {
+  max-width: 200px;
+}

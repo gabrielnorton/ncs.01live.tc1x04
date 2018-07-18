@@ -1,0 +1,79 @@
+/* For the extra images responsiveness (border) */
+tbody input.form-text{
+  width: 100%;
+}
+
+/* 20170302 TR ON-4551
+ *  overide core because core was doing this in a dumb way.
+ * core was adding padding to the right and left of buttons and removing all padding from the first button.
+ * this caused the buttons to look askew on smaller screens.
+ * I am fixing this by making all buttons have padding right and no padding left.
+ * that way they all line up on smaller screens. 
+ */
+.button:first-child, .image-button:first-child {
+  margin-left: 0em;
+  margin-right: 1em;
+}
+.button, .image-button {
+  margin-left: 0em;
+  margin-right: 1em;
+  max-width: 100%;
+}
+
+#edit-delete {
+  margin-left: 1em;
+}
+/* 20171009 JSS: Styling the publishing status checkbox into a toggle switch (ON-8057) */
+#edit-status-value {
+  display:none;
+}
+
+/* The switch background */
+#edit-status-wrapper > div > label:before, #edit-meta > .form-item-status-value > label:before {
+  content: "";
+  position: relative;
+  display: inline-block;
+  background-color: #e88b8b;
+  background-image: url(../images/xmark.ico);
+  background-repeat: no-repeat;
+  background-position: 22px 4px;
+  background-size: 12px;
+  width: 40px;
+  height: 20px;
+  top: 5px;
+  margin-right: 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  /*transition: .2s;*/
+}
+
+/* The switch handle */
+#edit-status-wrapper > div > label:after, #edit-meta > .form-item-status-value > label:after {
+  content: "";
+  position: relative;
+  display: inline-block;
+  float: left;
+  left: 18px;
+  top: 7px;
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: .2s;
+}
+
+/* When checked */
+#edit-status-value:checked + label:before {
+  background-color: #66bb6a;
+  background-image: url(../images/checkmark.ico);
+  background-repeat: no-repeat;
+  background-position: 5px 2px;
+  background-size: 14px 15px;
+}
+#edit-status-value:checked + label:after {
+  transform: translateX(20px);
+}
+
+#edit-meta > div.form-item-status-value, #edit-status-wrapper > div {
+  margin-left: -16px;
+}

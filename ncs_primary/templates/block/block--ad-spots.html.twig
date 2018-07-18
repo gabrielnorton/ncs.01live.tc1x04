@@ -1,0 +1,19 @@
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+    'advertisement',
+  ]
+%}
+
+<div {{ attributes.addClass(classes) }}>
+  <div id="{{ content.dfpslot }}">
+    <script type='text/javascript'>
+      if (googletag !== undefined) {
+          googletag.cmd.push(function() { googletag.display('{{ content.dfpslot }}'); });
+      }
+    </script>
+    <!--<img src="http://via.placeholder.com/{{ content.width }}x{{ content.height }}?text=advertisement"/>-->
+  </div>
+</div>

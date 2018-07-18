@@ -1,0 +1,203 @@
+/*
+  regions
+  main navigation
+  login modal / session menu
+  social nav menu
+  sidebar-group
+  footer
+*/
+
+
+/* regions */
+.region-top-bar {
+    padding: 4px 0;
+    background-color: #ececec;
+}
+
+.region-header {
+    padding: 10px 0;
+}
+
+#block-mainmenu .nav > li > a {
+    border-bottom:solid 2px white;
+    color: black;
+    font-size:12px;
+}
+
+#block-mainmenu .nav > li > a:hover {
+    background:inherit;
+    color:inherit;
+}
+
+#block-mainmenu .nav > li:hover > a span.menu-text {
+    border-bottom:solid 2px black;
+}
+
+#block-mainmenu .nav > li > a[title="Home"] {
+    background: #ffffff url("/themes/custom/onset/images/home.png") no-repeat right top;
+    font-size: 0;
+    width: 22px;
+}
+
+.dropdown:hover .dropdown-menu {
+display: block;
+}
+
+/* home icon */
+
+#block-mainmenu .navbar-nav > li > a[title="Home"] {
+    background: #ffffff url("/themes/custom/onset/images/home.png") no-repeat right top;
+    font-size: 0;
+    width: 22px;
+}
+
+
+/* login modal and menu */
+
+#onset-login .modal-dialog {
+    width: 258px;
+    color: black;
+}
+
+#onset-login .block-user-login-block .btn {
+    background: white;
+}
+
+.menu--account .menu,
+.onset-login-nav {
+    font-family: 'Open Sans' , sans-serif !important;
+    margin: 0;
+    text-align: right;
+    min-height: 20px;
+    list-style: none;
+}
+
+.menu--account .menu #welcome-user,
+.onset-login-nav #welcome-user {
+    border-right: solid 1px black;
+    padding-right: 10px;
+}
+
+.menu--account .menu li,
+.onset-login-nav li {
+    display: inline;
+}
+
+.menu--account .menu li a,
+.onset-login-nav #welcome-user li a {
+    padding: 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #2f2f2f;
+}
+
+.menu--account .menu li a:hover,
+.onset-login-nav #welcome-user li a:hover {
+    color: #49c1db;
+}
+
+/*
+.menu--account .menu li a[href="/user"]:before {
+    font-family: FontAwesome;
+    content: "\f007  ";
+    font-size: 20px;
+} */
+
+.menu--account .menu li a[href="/user"] {}
+
+
+/* social account nav */
+
+.social-account-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.social-account-nav ul li {
+    display: inline-block;
+    padding: 0 5px;
+    margin: 0;
+}
+
+.social-account-nav ul li a {
+    display: block;
+    font-size: 0;
+}
+
+.social-account-nav ul li a {
+    font-family: FontAwesome;
+    color: #2f2f2f;
+}
+
+.social-account-nav ul li a:hover {
+    text-decoration: none;
+    color: #49c1db;
+}
+
+.social-account-nav ul li a:before {
+    font-size: 22px;
+}
+
+.social-account-nav ul li a[title="Facebook"]:before {
+    /*background: #ffffff url("/themes/custom/onset/images/fb.png") no-repeat right top;*/
+    content: "\f09a";
+}
+
+.social-account-nav ul li a[title="RSS"]:before {
+    /*background: #ffffff url("/themes/custom/onset/images/rssfeed.png") no-repeat right top;*/
+    content: "\f09e";
+}
+
+.social-account-nav ul li a[title="Youtube"]:before {
+    /*background: #ffffff url("/themes/custom/onset/images/ytube.png") no-repeat right top;*/
+    content: "\f167";
+}
+
+.social-account-nav ul li a[title="Twitter"]:before {
+    /*background: #ffffff url("/themes/custom/onset/images/twt.png") no-repeat right top;*/
+    content: "\f099";
+}
+
+
+/* sidebar-group */
+.sidebar-group h2,
+.sidebar-group h2 a {
+    font-family: 'Domine', serif;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 3px 0;
+    border-bottom: solid 1px black;
+    color: #252424;
+}
+.sidebar-group .advertisement {
+  margin-top:10px;
+}
+
+.sidebar-panel .content,
+.sidebar-panel .block-content {
+  background-color: #eaeaea;
+  padding:10px;
+}
+
+.sidebar-group .abheading .abheading_title,
+.sidebar-group .abheading .abheading_title a,
+.sidebar-group .abheading .abheading_title span {
+  font-family: 'Domine', serif;
+  font-weight:bold;
+}
+
+/* footer */
+
+.footer {
+    margin-top: 10px;
+}
+
+.site-footer,
+.site-footer a {
+    color: white;
+}
+
+.footer-info {}
+
+

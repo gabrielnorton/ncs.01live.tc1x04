@@ -1,0 +1,5 @@
+# Schema for the configuration files of the Onset theme.
+
+onset.settings:
+  type: theme_settings
+  label: 'Onset settings'

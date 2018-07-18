@@ -1,0 +1,76 @@
+#block-views-block-user-uploaded-images-block-1 h2 {
+	border-bottom: 1px solid #529600; /* Thuy can change from green #529600 to black line #000000 */
+	margin: 20px 10px;
+	padding-top: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+#block-views-block-user-uploaded-images-block-1 {
+  margin-top: 30px;
+  margin-left: 5px;
+}
+
+
+#block-views-block-user-uploaded-images-block-1 .content img {
+    padding-right:10px;
+  	padding-bottom:20px;
+  	padding-top:10px;
+  	padding-left:10px;
+}
+
+#block-views-block-user-uploaded-images-block-1 .more-link {
+	text-align: center;
+	width: 98%;
+}
+
+.path-user-uploaded-images #page-title {
+	float: right;
+    width: 90%;
+}
+
+.path-user-uploaded-images .view-user-uploaded-images {
+	float: right;
+    width: 90%;
+}
+
+.path-user-uploaded-images .view-user-uploaded-images img {
+    padding-right:10px;
+  	padding-bottom:20px;
+  	padding-top:10px;
+  	padding-left:10px;
+}
+
+@media (max-width: 750px) {
+  .view-user-uploaded-images .views-col {
+  	width: 50% !important;
+  }
+
+  .view-user-uploaded-images .views-col img {
+  	width: 80%;
+  }
+}
+
+/*.view-user-uploaded-images .field-content {
+    max-height: 100px;
+    max-width: 150px;
+}
+
+
+.view-user-uploaded-images a {
+    display: block;
+    font-weight: bold;
+    max-width: 100%;
+    position: relative;
+    height: 100px;
+    width: 150px;
+}
+
+.view-user-uploaded-images img {
+    display: block;
+    float: left;
+    height: auto;
+    max-width: 100%;
+    padding: 10px 10px 20px;
+}*/

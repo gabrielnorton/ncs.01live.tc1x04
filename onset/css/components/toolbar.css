@@ -1,0 +1,12 @@
+/**
+ * @file
+ * Toolbar module overrides for Bartik.
+ */
+
+.toolbar a {
+  border-bottom: none;
+}
+
+.toolbar-oriented .toolbar-bar {
+  position: fixed;
+}

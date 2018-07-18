@@ -1,0 +1,22 @@
+uuid: 2cdb0b04-f47e-4ee9-9700-b23224c9dc8e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - onset
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: onset_content
+theme: onset
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

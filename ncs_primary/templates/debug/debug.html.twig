@@ -1,0 +1,21 @@
+{% macro debugger(_context, node, page, elements) %}
+
+<pre>
+  _context: 
+  {% for key, value in _context %} {{ loop.index }}: {{ key }},
+  {% endfor %}
+  
+  node:
+  {% for key, value in node %} {{ loop.index }}: {{ key }}, 
+  {% endfor %} 
+  
+  page:
+  {% for key, value in page %} {{ loop.index }}: {{ key }}, 
+  {% endfor %}
+
+  elements:
+  {% for key, value in elements %} {{ loop.index }}: {{ key }}, 
+  {% endfor %}
+</pre>
+
+{% endmacro %}

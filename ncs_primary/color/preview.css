@@ -1,0 +1,184 @@
+/* ---------- Preview Styles ----------- */
+
+/* color module overrides */
+  .color-form .form-item {
+    margin: 0;
+  }
+.clearfix.color-palette.js-color-palette {
+    margin-right: 30px;
+    background: #313030;
+    color: white;
+}
+.item-selected {
+  background: #7d7c7c;
+}
+/*
+button.color-palette__lock.is-unlocked {
+    display: none;
+}
+*/
+/* end color module overrides */
+
+/* block demo css */
+.region {
+    padding: 5px 10px;
+}
+/* end block demo css */
+
+.light { 
+  color: white;
+  text-shadow: .5px .5px .5px #131313; 
+}
+.medium { 
+  color: gray; 
+}
+.dark { 
+  color: black;
+  text-shadow: .5px .5px .5px #fffefe; 
+}
+
+/* bootstrap mimick */
+.navbar.nav {
+    display:inline-block;
+    margin: 0;
+    list-style: none;
+}
+
+.navbar.nav>li {
+    display: inline-block;
+}
+
+.navbar.nav>li>a,
+.navbar.nav>li>.navbar-text {
+    padding: 8px;
+    display:block;
+  }
+/* end bootstrap mimick */
+
+.js .color-preview {
+  clear: both;
+  float: none !important;
+  width: calc(100% - 400px);
+  margin-top: 20px;
+  background-color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: hidden;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
+
+/* -----  text and links  ----- */
+.color-preview a,
+.link {
+}
+.color-preview a:hover,
+.color-preview a:focus,
+.link:hover,
+.link:focus {
+}
+.color-preview a:active,
+.link:active {
+}
+
+/* -----  body  ----- */
+.color-preview p {
+}
+
+/* -----  top bar  ----- */
+.color-preview .region-top-bar {
+}
+
+/* -----  header - full  ----- */
+.color-preview #page-header {
+}
+
+/* -----  header - inner  ----- */
+.color-preview .region-header {
+}
+
+/* -----  primary menu  ----- */
+.color-preview .region-primary-menu {
+}
+.color-preview .region-primary-menu .menu--ncs-primary-main .navbar-nav > li > a:hover {
+}
+
+section#page-content > div > div.page-content-left,
+section#page-content > div > div.page-content-right {
+    width: 20%;
+    float:left;
+}
+section#page-content > div > div.page-content {
+    width: 50%;
+    float:left;
+    margin-bottom:10px;
+}
+
+/* primary color as block border */
+.color-preview .region-right-content .demo-block .block-title,
+.color-preview .region-left-content .demo-block .block-title,
+.color-preview .region-content .demo-block .block-title,
+.color-preview .region-featured-bottom .demo-block .block-title,
+.color-preview .region-featured-top .demo-block .block-title,
+.color-preview .ncs_primary_front_news .block-title,
+.color-preview .node-features .field .field__label,
+.color-preview .ncs_primary_featured_updates.block .block-title {
+  border-bottom: solid 2px #f7263e;
+  padding-bottom: 4px;
+}
+
+
+/* -----  secondary menu  ----- */
+.color-preview .region-secondary-menu {
+}
+
+/* -----  highlighted  ----- */
+.color-preview .region-highlighted {
+}
+
+/* -----  breadcrumb  ----- */
+.color-preview .region-breadcrumb {
+}
+
+/* -----  featured top  ----- */
+.color-preview #page-features-top {
+}
+
+/* -----  left content ----- */
+.color-preview .page-content-left {
+}
+
+.color-preview .page-content {
+
+}
+
+/* -----  right content  ----- */
+.color-preview .page-content-right {
+}
+
+/* -----  rail blocks  ----- */
+.color-preview .page-content-right .demo-block .content {
+}
+
+/* -----  rail block titles  ----- */
+.color-preview .page-content-right .demo-block .block-title {
+}
+
+/* -----  featured bottom  ----- */
+.color-preview #page-features-bottom {
+}
+
+/* -----  footer  ----- */
+.color-preview #page-footer {
+}
+
+.color-preview .region-header,
+.color-preview .region-header a,
+.color-preview .region-header li a.is-active,
+.color-preview .site-branding__text,
+.color-preview .site-branding,
+.color-preview .site-branding__text a,
+.color-preview .site-branding a,
+.color-preview .region-secondary-menu .menu-item a,
+.color-preview .region-secondary-menu .menu-item a.is-active {
+}

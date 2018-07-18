@@ -1,0 +1,42 @@
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually-hidden' ? 'visually-hidden',
+  ]
+%}
+<section{{ attributes.addClass(classes) }}>
+
+  <div{{ attributes.addClass(classes) }}>
+ 
+  {% if comments and not label_hidden %}
+    {{ title_prefix }}
+    <h2{{ title_attributes.addClass(title_classes) }}>{{ label }}</h2>
+    {{ title_suffix }}
+  {% endif %}
+
+      {% if not comments and not label_hidden %}
+        <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+      {% endif %}
+	  
+      {% if multiple %}
+        <div class='field__items'>
+      {% endif %}
+	       
+	  {% for item in items %}
+        <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+      {% endfor %}
+     
+	  {% if multiple %}
+        </div>
+      {% endif %}
+  </div>
+
+</section>

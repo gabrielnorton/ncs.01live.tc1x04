@@ -1,0 +1,70 @@
+/*NCS custom styles for blogs section */
+
+.views-field.views-field-field-image-reference {
+  margin-top: 0%;
+  float:left;
+  padding-right: 5%;
+  width:100px;
+  height:75px;
+}
+#block-onset-views-block-blogs-created-frontpage-blog .item-list ul li:after, #block-showcase-views-block-blogs-created-frontpage-blog .item-list ul li:after {
+  content: '';
+  clear: both;
+  display: table;
+}
+
+/*Truncating long blog titles in the blogs block*/
+div.blog-right {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  float: right;
+  width: 55%;
+}
+
+/* latest blogs block on right sidebar*/
+div.latest-blogs-block header {
+  transform: translateY(-20px);
+}
+
+div.latest-blogs-block img {
+  max-width: 100%;
+  height: auto;
+}
+
+.latest-blogs-block .image-container{
+  height: auto;
+  float:left;
+}
+.latest-blogs-block .rest-of-node{
+  float: right;
+  width: calc(100% - 110px);
+}
+
+.columns-of-images .first-column{
+  float:left;
+  width:50%;
+  height:auto;
+}
+
+.columns-of-images .second-column{
+  float:right;
+  width:50%;
+  height:auto;
+}
+
+.field--name-field-comments{
+  clear:both
+}
+
+#content div.latest-blogs-block article.node--type-blog-post  .rest-of-node  .node__title span,
+div.latest-blogs-block article.node--type-blog-post  .rest-of-node  .node__title span,
+div.view-classified-ad article.node--type-classified-ad .rest-of-node .node__title span,
+#content div.view-classified-ad article.node--type-classified-ad .rest-of-node .node__title span{
+
+  font-family: 'Domine', serif;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: 'Domine', serif !important;
+  color: #337ab7;
+}

@@ -1,0 +1,40 @@
+#block-dtatheme-views-block-what-s-hot-block-1 {
+	background-color: #F8F8F8;
+	margin: 10px;
+}
+
+#block-dtatheme-views-block-what-s-hot-block-1 h2 {
+	border-bottom: 1px solid #529600;
+	margin: 20px 10px;
+	padding-top: 5px;
+	font-size: 16px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.view-what-s-hot .views-field-field-in-page-image .field-content {
+	max-width: 350px;
+	max-height:210px;
+	overflow: hidden;
+}
+
+.view-what-s-hot .views-field-field-in-page-image .field-content a {
+	display: block;
+	float: left;
+	max-width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.view-what-s-hot .views-field-field-in-page-image .field-content img {
+	max-width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    padding: 10px;
+}
+
+.view-what-s-hot .view-content {
+	width: 90%;
+    margin: 0 auto;
+}

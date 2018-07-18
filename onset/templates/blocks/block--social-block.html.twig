@@ -1,0 +1,49 @@
+
+{%
+  set classes = [
+    'block',
+    'block-' ~ configuration.provider|clean_class,
+    'block-' ~ plugin_id|clean_class,
+  ]
+%}
+
+<div id="block-socialmediaiconsblock" {{ attributes.addClass(classes) }}>
+
+  <div data-contextual-id="block:block=socialmediaiconsblock:langcode=en"></div>
+  <div class="content">
+
+
+  <div class="content">
+    <div class="navigation-social-bookmarks">
+	  <ul class="social-bookmarks">
+	    <li class="youtube">
+		  <a href="https://www.youtube.com" target="_blank">
+			<img class="social-media-icon" alt="YouTube" width="35" height="35" src="/themes/custom/dtatheme/images/ytube.png">
+		  </a>
+		</li>
+		<li class="rss">
+		  <a href="">
+			<img class="social-media-icon" alt="RSS" width="35" height="35" src="/themes/custom/dtatheme/images/rssfeed.png">
+		  </a>
+		</li>
+		<li class="google">
+		  <a href="https://plus.google.com/" target="_blank">
+			<img class="social-media-icon" alt="GooglePlus" width="35" height="35" src="/themes/custom/dtatheme/images/gplus.png">
+		  </a>
+		</li>
+		<li class="twitter">
+		  <a href="https://www.twitter.com" target="_blank">
+			<img class="social-media-icon" alt="Twitter" width="35" height="35" src="/themes/custom/dtatheme/images/twt.png">
+		  </a>
+		</li>
+		<li class="facebook">
+		  <a href="https://www.facebook.com" target="_blank">
+			<img class="social-media-icon" alt="Facebook" width="35" height="35" src="/themes/custom/dtatheme/images/fb.png">
+		  </a>
+		</li>
+	  </ul>
+	</div>
+  </div>
+
+  </div>
+</div>

@@ -1,0 +1,63 @@
+/**
+ * @file
+ * The visual styles for Bartik's search form(s).
+ */
+
+form div.form-item-search-api-fulltext{
+  margin-right: 34px;
+}
+
+#edit-search-api-fulltext{
+  height: 33px;
+  font-size: 13px;
+  width: 100%;
+  float: left;
+  position: relative;
+  bottom: 2px;
+}
+
+.search-api-block-form input.form-submit {
+  background: #f0f0f0 url(/themes/custom/dtatheme/images/search-icon.jpg) no-repeat center;
+  background-color: black;
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+  padding: 0;
+  text-indent: -9999px;
+  direction: ltr;
+  border-radius: 0;
+  width: 34px;
+  height: 34px;
+  bottom: 3px;
+  position: relative;
+}
+
+#edit-sort-order,
+#edit-sort-by{
+  height: 33px;
+}
+
+.search-api-block-form input.form-submit:hover,
+.search-api-block-form input.form-submit:focus {
+  background: #dedede url(/themes/custom/dtatheme/images/search-icon.jpg) no-repeat center;
+}
+.block-search-api-form-block .search-form .form-item-search-api-fulltext label {
+  display: block;
+}
+
+#block-searchapiform-5{
+  padding: 0px 15px;
+}
+
+/* Search API form front page mobile */
+@media (min-width: 992px) {
+  .searchapiform-mobile {
+    display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .searchapiform-desktop {
+    display: none;
+  }
+}

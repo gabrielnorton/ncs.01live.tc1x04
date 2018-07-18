@@ -1,0 +1,170 @@
+/* bootstrap overrides */
+.navbar {
+  min-height:40px;
+}
+
+/* for the affixed nav */
+body {
+  position: relative;
+}
+
+.affix{
+  top: 0;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 0 4px 1px rgba(0,0,0,0.4);
+  z-index: 501;
+}
+
+.toolbar-horizontal .affix {
+  top: 39px
+}
+
+.toolbar-horizontal.toolbar-tray-open .affix {
+  top: 79px
+}
+
+.toolbar-vertical.toolbar-tray-open .affix {
+  top: 39px;
+}
+
+.icon-bar {
+  background-color: #2f2f2f;
+}
+
+@media (max-width: 768px) {
+  .toolbar-horizontal .affix {
+    top: 39px;
+  }
+ .toolbar-vertical.toolbar-tray-open .affix {
+    top: 87px;
+  }
+  .toolbar-horizontal.toolbar-tray-open .affix {
+    top: 79px;
+  }
+}
+
+/* rest of the main menu css */
+
+#block-mainmenu .nav > li > a {
+  border-bottom: solid 2px white;
+  color: black;
+  font-size: 12px;
+}
+
+#block-mainmenu .nav li a span.menu-text {
+  white-space: nowrap;
+}
+
+#block-mainmenu .nav > li:hover > a span.menu-text,
+#block-mainmenu .nav li.dropdown ul.dropdown-menu li:hover > a span.menu-text {
+  border-bottom: solid 2px black;
+}
+
+#main-menu-collapse ul.nav li.menu-item--active-trail > a span.menu-text {
+  border-bottom:solid 2px black;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+@media (min-width: 768px) {
+  #block-mainmenu .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  #block-mainmenu .dropdown-menu {
+    border: none;
+    margin-top: -1px;
+  }
+  #block-mainmenu .nav > li > a:hover {
+    background: inherit;
+    color: inherit;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: 50px;
+  }
+  #block-mainmenu {
+    top: 0px;
+    position: fixed;
+    background: white;
+    z-index: 501;
+    right: 0;
+    width:100%;
+  }
+  #main-menu-collapse {
+    min-width: 190px;
+  }
+  #block-mainmenu ul.nav li a {
+    text-align:left;
+    font-weight:bold;
+    padding:8px;
+  }
+  #block-mainmenu ul.dropdown-menu {
+    width: 100%;
+    position: relative;
+    box-shadow: none;
+    border: solid 1px #eaeaea;
+    margin-top: -8px;
+    margin-bottom: 8px;
+  }
+  #block-mainmenu .dropdown-menu>li>a:hover,
+  #block-mainmenu .dropdown-menu>li>a:focus {
+    background: #fff;
+  }
+
+  #page, #main-wrapper,
+  .region-primary-menu .menu-item a.is-active,
+  .region-primary-menu .menu-item--active-trail a {
+    /* this is an override of colors.css */
+    background:inherit;
+  }
+}
+
+@media (min-width: 768px){
+  #block-mainmenu .nav > li > a[title="Home"] {
+    background: #ffffff url("/themes/custom/onset/images/home.png") no-repeat right top;
+    font-size: 0;
+    width: 22px;
+  }
+}
+
+/*
+#affix-nav.affix {
+  position: fixed;
+  top: 0px;
+  z-index: 99999 !important;
+  background:white;
+}
+
+@media (min-width: 768px) {
+  #affix-nav.adminMenuDefault {
+    top: 0px;
+  }
+  #affix-nav.adminMenuActive {
+    top: 90px;
+  }
+  #affix-nav.adminMenuInActive {
+    top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+   #affix-nav.adminMenuDefault {
+    top: 0px;
+  }
+  #affix-nav.adminMenuActive {
+    top: 90px;
+  }
+  #affix-nav.adminMenuInActive {
+    top: 40px;
+  }
+  .region-top-bar {
+    margin-top: 50px;
+  }
+}
+*/

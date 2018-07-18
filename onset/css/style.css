@@ -1,0 +1,560 @@
+/*  font imports  */
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,300,400italic,600,600italic,700);
+/*font-family: 'Open Sans', sans-serif;*/
+@import url(https://fonts.googleapis.com/css?family=Domine:400,700);
+/*font-family: 'Domine', serif;*/
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans:400,700);
+/*font-family: 'Droid Sans', sans-serif;*/
+
+/* element resets */
+
+a {
+  outline: none !important;
+}
+
+#header {
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+/* event module */
+
+#event-details {
+  font-family: open sans;
+}
+
+
+/* navmenu stuff */
+
+#block-onset-main-menu ul,
+#block-showcase-main-menu ul {
+  margin-left: 0px;
+}
+
+#block-onset-main-menu li a,
+#block-showcase-main-menu li a {
+  padding: 13px 0px 8px, 10px;
+  /* ON-797 MPF 04-21-2016 added padding to left  */
+  border-bottom: 3px solid RGBA(240, 0, 255, 0);
+}
+
+#block-onset-main-menu li a.is-active,
+#block-showcase-main-menu li a.is-active {
+  border-bottom: 3px solid #000000 !important;
+  /* Thuy - change color from green #b5d33f to black #000000 */
+}
+
+#block-onset-main-menu li a:hover,
+#block-showcase-main-menu li a:hover {
+  border-bottom: 3px solid #000000 !important;
+  /* Thuy - change color from green #b5d33f to black #000000 */
+}
+
+/* handling frontpage view div */
+.view-frontpage{
+  display: none;
+}
+
+/* temperature stuff */
+
+.block-mini-temp {
+  /*width: 100px;
+  display: inline-block;
+  */
+}
+
+div[id*="block-minitemp"] {
+  color: #000;
+  font-size: 1.2em;
+  font-weight: 600;
+  min-width: 121px;
+  /*padding-bottom: 10px;
+  display: inline;*/
+}
+
+/* search bar */
+
+.search-block-form {
+  background-color: white !important;
+  border-color: white !important;
+}
+
+
+
+/*classified ads list*/
+.node--type-classified-ad.node--view-mode-teaser .field.field--name-title.field--type-string.field--label-hidden {
+  font-size: 30px;
+}
+/*top stories section */
+
+.node--type-event .field.field--name-title.field--type-string.field--label-hidden {
+  font-size: 30px;
+}
+
+.field.field--name-title.field--type-string.field--label-hidden {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  padding: 20px 20px 20px 0px;
+}
+
+/* Top Stories Title and Arrows */
+#top-stories-title-wrapper {
+  width: 100%;
+  display: inline-block;
+  padding: 0 15px;
+}
+#top-stories-title-text {
+  width: calc(100% - 66px);
+  float: left;
+}
+#top-stories-title-text h2 {
+  font-family: 'Domine', serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px 0;
+}
+#top-stories-left-arrow,
+#top-stories-right-arrow {
+  width: 33px;
+  float: left;
+  margin: 10px 0;
+}
+#top-stories-left-arrow:hover,
+#top-stories-right-arrow:hover {
+  cursor: pointer;
+}
+#top-stories-left-arrow img,
+#top-stories-right-arrow img {
+  height: 33px;
+  width: 33px;
+}
+
+.item .caption > * {
+  background: transparent;
+  padding: 0px;
+  border: none;
+}
+
+.item .thumbnail {
+  padding: 0px;
+  border: none;
+}
+
+.top-stories-slider-text {
+  padding: 15px;
+}
+
+.top-stories-current-pos,
+.top-stories-tot {
+  padding: 5px;
+}
+
+.top-stories-curr {
+  display: none;
+  font-size: 16px;
+  font-weight: normal;
+  padding: 5px;
+}
+
+.top-stories-slider-text * {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+.top-stories-slider-text *:hover {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/*Main content RIGHT Section */
+
+#block-views-block-user-uploaded-images-frontpage-gallery h2 {
+  font-family: 'Domine', serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+
+/*upload button*/
+
+.custom-input-group {
+  padding-bottom: 20px;
+}
+
+.custom-input-group .form-control {
+  border-radius: 0px;
+}
+
+.custom-input-group .btn-browse-black {
+  color: #fff;
+  background-color: #000000;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.custom-input-group .btn-browse-black:hover,
+.custom-input-group .btn-submit-black:hover,
+.custom-input-group .btn-browse-black:focus,
+.custom-input-group .btn-submit-black:focus {
+  background-color: #B5D341;
+  color: #fff;
+}
+
+.custom-input-group .btn-submit-black {
+  border: 2px solid #000000;
+  color: #000;
+  text-transform: uppercase;
+  margin-left: 6px;
+  border-radius: 0px;
+  font-weight: bold;
+  background-color: #fff;
+  padding: 5px 12px;
+}
+
+.social-bookmarks {
+  display: inline-block;
+}
+
+.social-bookmarks .social-media-icon {
+  height: 26px;
+  width: 32px;
+  overflow: hidden;
+  margin-left: 6px;
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
+
+.social-bookmarks .facebook .social-media-icon {
+  width: 27px !important;
+}
+
+/* block group stuff */
+
+.category-heading-1 {
+  font-family: 'Domine', serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+.block-blockgroup.tabbed h2.active {
+  border-bottom: 2px solid #000;
+  color: #000;
+  outline: 0;
+}
+
+.block-blockgroup.tabbed .tabs a {
+  font-family: 'Droid Sans', sans-serif;
+  font-size: 16px;
+  color: black;
+  border-bottom: medium none;
+  padding: 0.2em 0px;
+  text-decoration: none;
+  margin-right: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  display: block;
+}
+
+.block-blockgroup.tabbed .tabs a.active {
+  border-bottom: 2px solid #000;
+}
+
+.block-blockgroup.tabbed .tabs a:hover {
+  border-bottom: 2px solid #000;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.block-blockgroup.tabbed .content > div {
+  display: none;
+}
+
+.block-blockgroup.tabbed .content > div:first-child {
+  display: block;
+  /* unhide the first tab, until jQuery can make the others */
+}
+
+/* sidebar stuff */
+
+.view-expander {
+  display: inline-block;
+  float: right;
+  width: 24%;
+  padding: 5px;
+  min-width: 15px;
+}
+
+.view-title {
+  display: inline-flex;
+  width: 75%;
+}
+
+@media(max-width: 500px) {
+  .block-blockgroup .tabs a {
+    margin-right: 8px;
+  }
+}
+
+/* Carousel Control Half slider */
+#carousel-half .col-md-12.text-right {
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+#carousel-half .caption h4 {
+  max-height: 80px;
+  overflow: hidden;
+}
+
+#carousel-half .caption a {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+}
+
+#carousel-half .caption h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: #464950;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+#carousel-half .item > div {
+  min-height: 300px;
+}
+
+#carousel-half .thumbnail a > img {
+  margin: 0px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-inner-full p a {
+  font-family: 'Droid Sans', sans-serif !important;
+  font-weight: bold;
+  font-size: 12px !important;
+  padding: 8px 20px;
+  border: 1px solid #fff;
+  font-style: normal;
+}
+
+@media (min-width: 950px) {
+  .slider-story-summary {
+    display: block;
+  }
+  .mobile-summary {
+    display: none;
+  }
+}
+
+@media (max-width: 949px)   {
+  .slider-story-summary {
+    display: none;
+  }
+  .mobile-summary {
+    display: none;
+  }
+  .mobile-summary p {
+    display: none;
+  }
+  .carousel-inner-full .banner-lay-bar{
+    display:none;
+  }
+}
+
+.carousel-inner-full .banner-lay-bar {
+  padding: 0px;
+  margin: 0px;
+}
+
+.carousel-caption .carousel-caption-full h1 a {
+  font-family: 'Domine', serif;
+  font-size: 36px;
+  color: #fff !important;
+}
+
+.carousel-caption.carousel-caption-full a {
+  color: #fff !important;
+  font-family: 'Domine', serif;
+  font-size: 36px;
+  text-transform: uppercase;
+}
+
+.carousel-inner-full p {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-style: italic;
+  padding-bottom: 0px;
+  font-weight: bold;
+}
+
+.carousel-inner .item.view-node img.image-style-main-slider{
+  width: 100%;
+  height:auto;
+}
+
+.view-id-main_page_slider .left.carousel-control,
+.view-id-main_page_slider .right.carousel-control{
+  background-image:none;
+  display:inline-block;
+  top:50%;
+}
+
+/* *************************** Media Queries *************************** */
+
+@media (min-width:1200px) {
+  #header,
+  #main {
+    /*width: 1240px;*/
+    margin: auto;
+  }
+  .layout-one-sidebar .main-content {
+    width: 70%;
+  }
+  #sidebar-second {
+    width: 30%;
+  }
+  #article-sidebar-second {
+    width: 25%;
+  }
+}
+
+@media (max-width:615px) {
+  .region-footer-fifth {
+    display: none;
+  }
+}
+
+@media (max-width: 1100px) and (min-width: 901px) {
+  .container .carousel-caption.carousel-caption-full a {
+    font-size: 32px;
+  }
+
+}
+
+@media (max-width: 949px) and (min-width:360px)   {
+  .container .carousel-caption.carousel-caption-full a {
+    font-size: 20px;
+  }
+  .carousel-caption.carousel-caption-full h1{
+    line-height:.8
+  }
+  .carousel-caption.carousel-caption-full{
+    padding-bottom:35px;
+  }
+}
+
+@media (max-width: 359px) {
+  .container .carousel-caption.carousel-caption-full a {
+    font-size: 14px;
+  }
+  .carousel-inner-full p {
+    font-size: 14px;
+  }
+  .carousel-caption.carousel-caption-full h1{
+  line-height:.6
+  }
+  .carousel-caption.carousel-caption-full{
+    padding-bottom:35px;
+  }
+}
+
+@media (max-width:667px) {
+  .continer .carousel-caption.carousel-caption-full a {
+    line-height: 1.3;
+    display: block;
+  }
+  .carousel-inner-full p {
+    padding-top: 0px;
+    padding-bottom: 5px;
+  }
+}
+
+/*This is added because firefox treats max-width differently than the other browsers.*/
+
+.site-branding__logo img {
+  width: 100%
+}
+
+.node__links .comment-add {
+  display: none;
+}
+
+/*BDB ON-2644 put the hand hovering over tabs*/
+.tab-list a{
+  cursor: hand;
+  cursor: pointer;
+}
+
+/* slick slider css */
+.slick--main {
+  max-width: 590px;
+}
+
+.slick {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.slick--thumbnail {
+  margin-top: 20px;
+}
+
+/*temporary fix for ckeditor image embed centering without caption*/
+.align-center {
+  text-align: center;
+}
+
+.align-center img{
+  display: inline-block;
+}
+/*end temporary fix for ckeditor image embed centering without caption*/
+
+.view-top-stories-slider {
+  margin-top: 25px;
+}
+
+.view-classified-ad article {
+  text-align: center;
+}
+
+.view-classified-ad .field--name-field-ugc-main-image {
+  margin: 0 auto;
+  max-width: 250px;
+  float: none;
+}
+
+/* DAS-2297 - add carousel for extra images in story */
+.slick-carousel-controls-left {
+  background-image: url(/themes/custom/onset/images/arrow-left.png);
+  background-repeat: no-repeat;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  z-index: 2;
+  left: 0px;
+  top: 25%;
+  position: absolute;
+  outline: none;
+}
+
+.slick-carousel-controls-right {
+  background-image: url(/themes/custom/onset/images/arrow-right.png);
+  background-repeat: no-repeat;
+  padding: 12px;
+  background-color: transparent;
+  border: none;
+  z-index: 2;
+  right: 0px;
+  top: 25%;
+  position: absolute;
+  outline: none;
+}
+
+.slick-carousel-thumbnail {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}

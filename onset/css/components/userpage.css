@@ -1,0 +1,12 @@
+.field--name-field-bio.field--type-string-long.field__item {
+	float: right;
+  width: calc(100% - 110px);
+}
+
+.field--name-user-picture.field--type-image.field__item{
+	float: left;
+}
+
+div.field--name-user-picture img{
+	max-width: 100%;
+}

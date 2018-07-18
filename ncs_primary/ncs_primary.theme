@@ -1,0 +1,605 @@
+<?php
+/**
+ * @file
+ * Functions to support theming in the primary theme.
+ */
+use Drupal\Core\Config\Config;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Template\Attribute;
+use Drupal\image\Entity\ImageStyle;
+use Drupal\node\Entity\Node;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\Core\Theme\ThemeSettings;
+use Drupal\user\Entity\User;
+
+function ncs_primary_page_attachments_alter(array &$page) {
+
+  $page['#attached']['library'][] = 'ncs_primary/bootstrap';
+
+  // updating drupalsettings
+  //$page['#attached']['drupalSettings']['scroll']['module']['user'] = \Drupal::currentUser()->isAuthenticated();
+  //$page['#attached']['drupalSettings']['scroll']['user']['roles'] = \Drupal::currentUser()->getRoles();
+
+  // if debugcss=1, add debug css library
+  if(strpos($_SERVER['QUERY_STRING'], 'debugcss') !== false) {
+    $page['#attached']['library'][] = 'ncs_primary/debugcss';
+  }
+}
+
+function ncs_primary_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+
+  // work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  // https://www.drupal.org/node/2117411
+  // https://api.drupal.org/api/drupal/namespace/Drupal%21Core%21Render%21Element/8.2.x
+  // https://api.drupal.org/api/drupal/elements/8.2.x
+
+  // start custom styles container
+  $form['custom_styles'] = [
+    '#type' => 'details',
+    '#title' => t('Custom Styles'),
+    '#attributes' => array('id' => 'custom_styles'),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+  $form['custom_styles']['display_font'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_styles.display_font'),
+    '#title'         => t('Display Font'),
+    '#description'   => t('Provide the path to the display font, example http://myfont.font'),
+  ];
+  $form['custom_styles']['display_font_stack'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_styles.display_font_stack'),
+    '#title'         => t('Display Font Stack'),
+    '#description'   => t('Provide the stack for font families to use for your display font.'),
+  ];
+  $form['custom_styles']['body_font'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_styles.body_font'),
+    '#title'         => t('Body Font'),
+    '#description'   => t('Provide the path to the body font, example http://myfont.font'),
+  ];
+  $form['custom_styles']['body_font_stack'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_styles.body_font_stack'),
+    '#title'         => t('Body Font Stack'),
+    '#description'   => t('Provide the stack for font families to use for your body font.'),
+  ];
+  $form['custom_styles']['css_overrides'] = array(
+    '#type'          => 'textarea',
+    '#default_value' => theme_get_setting('custom_styles.css_overrides'),
+    '#format'        => 'full_html',
+    '#title'         => t('Custom CSS Overrides'),
+    '#description'   => t("Add custom CSS here to modify styles across all non-admin pages."),
+  );
+  // end custom styles container
+
+  // start custom labels container
+  $form['custom_labels'] = [
+    '#type' => 'details',
+    '#title' => t('Custom Labels'),
+    '#attributes' => array('id' => 'custom_labels'),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+  $form['custom_labels']['published_label'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_labels.published_label'),
+    '#title'         => t('Published Label'),
+    '#description'   => t('The text that displays before published dates.'),
+  ];
+  $form['custom_labels']['modified_label'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_labels.modified_label'),
+    '#title'         => t('Modified Label'),
+    '#description'   => t('The text that displays before modified dates.'),
+  ];
+  // end custom labels container
+
+  // start custom data container
+  $form['custom_data'] = [
+    '#type' => 'details',
+    '#title' => t('Custom Data'),
+    '#attributes' => array('id' => 'custom_data'),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+  $form['custom_data']['shareaholic_site_id']  = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_data.shareaholic_site_id'),
+    '#format'        => 'full_html',
+    '#title'         => t('Shareaholic Site ID'),
+    '#description'   => t('Used to create a metatag.'),
+  ];
+  $form['custom_data']['enable_grp'] = [
+    '#type'          => 'checkbox',
+    '#default_value' => theme_get_setting('custom_data.enable_grp'),
+    '#title'         => t('Google Opinion Rewards'),
+    '#description'   => t('Enable the Google Opinion Rewards for Publishers script.'),
+  ];
+  // end custom data container
+
+  // start custom layouts container
+  $form['custom_layout'] = [
+    '#type' => 'details',
+    '#title' => t('Custom Layout'),
+    '#attributes' => array('id' => 'custom_layout'),
+    '#open' => TRUE,
+    '#tree' => TRUE,
+  ];
+  // custom_layout.show_featured_top
+  $form['custom_layout']['show_featured_top'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.show_featured_top'),
+    '#title'         => t('Region: Featured Top'),
+    '#description' => 'Toggle showing the Featured Top Region. Options: <b>1</b>, Default: <b>0</b>',
+  ];
+  $form['custom_layout']['front'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.front'),
+    '#title'         => t('View: Front Page'),
+    '#description' => 'Options: <b>Full</b> (one column), <b>Default</b> (two columns), <b>Three</b> (three columns)',
+  ];
+  $form['custom_layout']['section'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.section'),
+    '#title'         => t('View: Taxonomy Term / Section'),
+    '#description' => 'Options: <b>Full</b> (one column), <b>Default</b> (two columns), <b>Three</b> (three columns)',
+  ];
+  $form['custom_layout']['story'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.story'),
+    '#title'         => t('Node: Story'),
+    '#description' => 'Options: <b>Full</b> (one column), <b>Default</b> (two columns), <b>Three</b> (three columns)',
+  ];
+  $form['custom_layout']['photo_gallery'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.photo_gallery'),
+    '#title'         => t('Node: Photo Gallery'),
+    '#description' => 'Options: <b>Full</b> (one column), <b>Default</b> (two columns), <b>Three</b> (three columns)',
+  ];
+  $form['custom_layout']['search'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.search'),
+    '#title'         => t('View: Search'),
+    '#description' => 'Options: <b>Full</b> (one column), <b>Default</b> (two columns), <b>Three</b> (three columns)',
+  ];
+  /*
+  $form['custom_layout']['featured_layout'] = [
+    '#type'          => 'textfield',
+    '#default_value' => theme_get_setting('custom_layout.featured_layout'),
+    '#title'         => t('View: Featured Stories Layout'),
+    '#description' => 'Options: <b>standard</b> (1 lead), <b>2stack</b> (1 lead, 2 stacked), <b>3stack</b> (1 lead, 3 stacked)',
+  ];
+  */
+
+  // end custom layouts container 
+}
+
+/***
+**** begin preprocess hooks ***
+**** _, html, page, region, block, view, node, form, menu, field
+***/
+
+function ncs_primary_preprocess(&$variables){
+
+  $path = \Drupal::service('path.current')->getPath();
+  $pattern = '/\/node\/./';
+  $is_front_page =  \Drupal::service('path.matcher')->isFrontPage();
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  // setting theme settings global variables
+  // see THEME_form_system_theme_settings_alter
+  $variables['custom_data']['shareaholic_site_id'] = theme_get_setting('custom_data.shareaholic_site_id');
+  $variables['custom_data']['enable_gorp'] = theme_get_setting('custom_data.enable_grp');
+  $variables['custom_styles']['display_font'] = theme_get_setting('custom_styles.display_font');
+  $variables['custom_styles']['display_font_stack'] =  theme_get_setting('custom_styles.display_font_stack');
+  $variables['custom_styles']['body_font'] = theme_get_setting('custom_styles.body_font');
+  $variables['custom_styles']['body_font_stack'] =  theme_get_setting('custom_styles.body_font_stack');
+  $variables['custom_labels']['published_label'] =  theme_get_setting('custom_labels.published_label');
+  $variables['custom_labels']['modified_label'] =  theme_get_setting('custom_labels.modified_label');
+  $variables['custom_data']['logo'] = theme_get_setting('logo.url');
+  $variables['custom_data']['palette'] = color_get_palette('ncs_primary');
+
+  if(! $is_front_page){
+    if(preg_match($pattern, $path)){
+      $page_match= TRUE;
+    } else {
+      $page_match = FALSE;
+    }
+  } else {
+    $page_match = FALSE;
+  }
+  $variables['is_node'] = $page_match;
+
+  // twig debug conditional on query param
+  if(strpos($_SERVER['QUERY_STRING'], 'debugtwig') !== false) {
+    $variables['debugtwig'] = 1;
+  }
+
+  //https://drupal.stackexchange.com/questions/197062/check-url-for-string-in-a-twig-file
+  $variables['currenturl'] = $_SERVER['REQUEST_URI'];
+  $variables['#cache']['contexts'][] = 'url.path';
+
+  if (isset($node)) {
+    // setting content_type as global variable 
+    $variables['content_type'] = $node->get('type')->getString();
+  }
+
+  if (isset($node) && ($node->get('type')->getString() == 'story')) {
+    // setting story categories as an array
+    $categoryArray = $node->get('field_content_category')->getValue();
+  }
+}
+
+function ncs_primary_preprocess_html(&$variables) {
+
+  // setting up reusable references
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $user = User::load(\Drupal::currentUser()->id());
+
+  // setting user variables, not sure if this is needed, might be from audience code.
+  $variables['user_id'] = ($user->get('uid')->value) ?: -1;
+  $variables['email'] = ($user->get('mail')->value) ?: '';
+
+  // setting theme settings variables for html.html.twig only
+  $variables['custom_styles']['css_overrides'] = theme_get_setting('custom_styles.css_overrides');
+
+  // adding metadata tags
+  if ( theme_get_setting('shareaholic_site_id') ) {
+    $shareaholic_site_id = [
+      '#tag' => 'meta',
+      '#attributes' => [
+        'name' => 'shareaholic:site_id',
+        'content' => theme_get_setting('shareaholic_site_id') ,
+      ],
+    ];
+    // append metatag to html_head
+    $variables['#attached']['html_head'][] = [$shareaholic_site_id, 'shareaholic_site_id'];
+  }
+
+  //  change page title to heading_a when content type is story
+  if (isset($node) && ($node->get('type')->getString() == 'story')) {
+    $headinga = $node->get('field_headline_a')->value;
+    if ( isset($headinga)) {
+      $variables['head_title']['title'] = t($headinga);
+    } else {
+      $variables['head_title']['title'] = t("No title");
+    }
+  }
+
+  // setting og image for frontpage
+  // this is not pulling the s3 path.
+  /*
+    $opengraph_image = [
+    '#tag' => 'meta',
+    '#attributes' => [
+      'name' => 'og:image',
+      'content' => theme_get_setting('logo.path'),
+      ],
+    ];
+    $variables['#attached']['html_head'][] = [$opengraph_image, 'opengraph_image'];
+    */
+
+}
+
+function ncs_primary_preprocess_page(&$variables){
+  $path = \Drupal::service('path.current')->getPath();
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  
+  $variables['front_test'] = $is_front;
+
+  // toggling optional regions
+  $variables['show_featured_top'] = theme_get_setting('custom_layout.show_featured_top');
+
+  // setting columns
+  $layout_front = theme_get_setting('custom_layout.front');
+  $layout_section = theme_get_setting('custom_layout.section');
+  $layout_story = theme_get_setting('custom_layout.story');
+  $layout_gallery = theme_get_setting('custom_layout.photo_gallery');
+  $layout_search = theme_get_setting('custom_layout.search');
+
+  if( isset($node)){
+    $content_type = $node->get('type')->getString();
+    if ( $content_type == 'photo_gallery') {
+      $variables['page_layout'] = strtolower( $layout_gallery );
+    } else if ( $content_type == 'story') {
+      $variables['page_layout'] = strtolower( $layout_story );
+    }
+  } else if( $is_front == 1){
+    $variables['page_layout'] = strtolower( $layout_front );
+  } else if ( preg_match('/^\/search/',$path) ) {
+    $variables['page_layout'] = strtolower( $layout_search );
+  }
+
+  // attaching libraries
+  if( $path == '/staff-directory'){
+    $variables['#attached']['library'][] = 'ncs_primary/staff';
+  }
+}
+
+function ncs_primary_preprocess_views_view(&$vars) { 
+  // ncs_primary/breaking
+  if ( $vars['id'] == 'ncs_primary_breaking') {
+    $vars['#attached']['library'][] = 'ncs_primary/breaking';
+  }
+  if ( $vars['id'] == 'ncs_primary_headlines') {
+    $vars['#attached']['library'][] = 'ncs_primary/headlines';
+  }
+  if ( $vars['id'] == 'stories_nearby') {
+    $vars['#attached']['library'][] = 'ncs_primary/stories-nearby';
+  }
+}
+
+function ncs_primary_preprocess_views_view_unformatted__topic(&$vars) {
+  // setting featured topics layout
+  $featured_layout = theme_get_setting('custom_layout.featured_layout');
+  $vars['featured_layout'] = $featured_layout;
+}
+
+function ncs_primary_preprocess_page_title(&$variables) {
+  // since the title and the shortcut link are both block level elements,
+  // positioning them next to each other is much simpler with a wrapper div.
+  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+    // add a wrapper div using the title_prefix and title_suffix render elements.
+    $variables['title_prefix']['shortcut_wrapper'] = array(
+      '#markup' => '<div class="shortcut-wrapper clearfix">',
+      '#weight' => 100,
+    );
+    $variables['title_suffix']['shortcut_wrapper'] = array(
+      '#markup' => '</div>',
+      '#weight' => -99,
+    );
+    // make sure the shortcut link is the first item in title_suffix.
+    $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+  }
+}
+
+function ncs_primary_preprocess_block(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_uri = \Drupal::request()->getRequestUri();
+
+  // Add a clearfix class to system branding blocks.
+  // this isn't needed, is an example to add classes to blocks referencing the plugin_id
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+
+  // adding calendar library to simplecalendar widget
+  if ($variables['plugin_id'] == 'calendar_block'){
+    $variables['#attached']['library'][] = 'ncs_primary/calendar';
+  }
+}
+
+function ncs_primary_preprocess_node(&$variables) {
+  // Remove the "Add new comment" link when the comment form is already displayed
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+  // adding open graph tag for main image, until a module does this for us
+  if (isset($node)) {
+    if ( ($node->get('type')->getString() === 'story') && ($variables['view_mode'] === "full") ) {
+      $nid = $variables['node']->id();
+      // check that the main image field is not null
+      if ( $node->get('field_main_image_reference')->first() !== null ) {
+        $referenceItem = $node->get('field_main_image_reference')->first();
+        $entityReference = $referenceItem->get('entity');
+        $entityAdapter = $entityReference->getTarget();
+        $img = $entityAdapter->getValue();
+        $imgId = $img->id();
+        // now that we have the entity reference id, load it and build the image url
+        $imgItem = Node::load($imgId)->field_main_image->first()->entity;
+        $styled_image_url = ImageStyle::load('large')->buildUrl($imgItem->getFileUri());
+        // construct the meta tag
+        $opengraph_image = [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'og:image',
+            'content' => $styled_image_url ,
+          ],
+        ];
+        // append metatag to html_head
+        $variables['#attached']['html_head'][] = [$opengraph_image, 'opengraph_image'];
+      }
+    } 
+  }
+
+  // setting variables for node.html.twig
+  if ($variables['view_mode'] !== "full") {
+    $node = Node::load( $variables['node']->id() );
+    // setting {{ content_type }}
+    $type = $node->get('type')->getString();
+    $variables['content_type'] = $type;
+    // setting {{ category }} array
+    $cats = $node->get('field_content_category')->getValue();
+    $categories = [];
+    foreach ( $cats as $key => $value ) {
+      $term = Term::load( $value['target_id'] );
+      if ( is_object( $term ) ) {
+        $termname = $term->getName();
+        array_push( $categories, $termname );
+        // setting {{ is_breaking }}
+        if ( $termname == 'Breaking') {
+          $variables['is_breaking'] = true;
+        }
+        // setting {{ is_featured }}
+        if ( $termname == 'Featured') {
+          $variables['is_featured'] = true;
+        }
+      }
+    }
+    $variables['categories'] = $categories;
+  }
+
+  if(isset($node)){
+      $comment_manager = \Drupal::service('comment.manager');
+      $fields = $comment_manager->getFields($node->getEntityTypeId());
+      foreach($fields as $field_name => $detail){
+        if (!$node->hasField($field_name)) {
+          continue;
+        }
+        $commenting_status_code = $node->get( $field_name )->status;
+        $variables['comment_status_code'] = $commenting_status_code;
+       // HIDDEN = 0, CLOSED = 1, OPEN = 2
+      switch ($commenting_status_code) {
+          case 0:
+              $variables['comment_status'] = 'hidden';
+              break;
+          case 1:
+              $variables['comment_status'] = 'closed';
+              break;
+          case 2:
+              $variables['comment_status'] = 'open';
+              break;
+          default:
+             $variables['comment_status'] = '';
+      }
+        $comment_count = $node->get( $field_name )->comment_count;
+        $variables['comment_count'] = $comment_count;
+      }
+  }
+
+}
+
+function ncs_primary_preprocess_image(&$vars) {
+
+  // removing width, height attributes from images
+  unset($vars['attributes']['width'], $vars['attributes']['height']);
+
+  // removing title attribute since from NCS Content it is a slugline
+  unset($vars['attributes']['title']);
+
+}
+
+// fields, links
+// $project_link['#attributes'] = array('class' => array('button', 'button-action', 'button--primary', 'button--small'))
+function ncs_primary_preprocess_links__comment(&$variables) {
+  $variables['attributes']['class'][] = 'list-unstyled nav navbar-nav nav-pills';
+}
+
+function ncs_primary_preprocess_item_list(&$variables) {
+  $variables['attributes']['class'][] = 'item_list_';
+}
+
+function ncs_primary_preprocess_maintenance_page(&$variables) {
+  // By default, site_name is set to Drupal if no db connection is available
+  // or during site installation. Setting site_name to an empty string makes
+  // the site and update pages look cleaner.
+  // @see template_preprocess_maintenance_page
+  if (!$variables['db_is_active']) {
+    $variables['site_name'] = '';
+  }
+
+  // custom styling for the maintenance page.
+  $variables['#attached']['library'][] = 'ncs_primary/maintenance_page';
+}
+
+/***
+**** begin form hooks ***
+***/
+
+function ncs_primary_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  // this is changing the default search form.
+  // see theme_suggestions_form_alter and theme_suggestions_input_search_alter
+  if ( in_array($form_id, ['search_block_form', 'search_form']) ) {
+    $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
+    if (!isset($form[$key]['submit']['#attributes'])) {
+      $form[$key]['submit']['#attributes'] = new Attribute();
+    }
+    $form[$key]['submit']['#attributes']->addClass('search-form__submit');
+  }
+
+  if ( in_array($form_id, ['user-login-form']) ) {
+     // do something
+  }
+}
+
+function ncs_primary_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  // inherited from onset. why can users not enter a byline?
+  if (array_key_exists('field_user_byline', $form)) {
+    $form['field_user_byline'] = null;
+  }
+}
+
+function ncs_primary_preprocess_input__password(&$variables) {
+  $variables['attributes']['class'][] = 'form-control';
+}
+
+function ncs_primary_preprocess_form_element(&$variables) {
+  $variables['attributes']['class'][] = 'form-group';
+}
+
+function ncs_primary_preprocess_input__textfield(&$variables) {
+  $variables['attributes']['class'][] = 'form-control';
+}
+
+/***
+**** begin theme_suggestions_hook_alter ***
+***/
+
+function ncs_primary_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
+
+function ncs_primary_theme_suggestions_field_alter(array &$suggestions, array $variables) {
+  // appending field view_mode for more specific twig suggestion
+  if ($variables['element']['#view_mode']) {
+    $sanitized_view_mode = strtr($variables['element']['#view_mode'], '.', '_');
+    $sanitized_field_name = strtr($variables['element']['#field_name'], '.', '_');
+    $sanitized_bundle_name = strtr($variables['element']['#bundle'], '.', '_');
+    $suggestions[] = 'field__node__' . $sanitized_field_name . '__' . $sanitized_view_mode;
+    $suggestions[] = 'field__node__' . $sanitized_field_name . '__' . $sanitized_bundle_name . '__' . $sanitized_view_mode;
+  }
+}
+
+function ncs_primary_theme_suggestions_user_alter(&$suggestions, $vars, $hook) {
+  $mode = $vars['elements']['#view_mode'];
+  $suggestions[] = 'user__' . $mode;
+}
+
+function ncs_primary_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if(isset($variables['element']['#form_id'])) {
+    $id = $variables['element']['#form_id'];
+    $suggestions[] = 'form__' . $id;
+  }
+}
+
+function ncs_primary_theme_suggestions_input_search_alter(array &$suggestions, array $variables) {
+  if(isset($variables['element']['#id'])) {
+    $id = $variables['element']['#id'];
+    $suggestions[] = 'input__search__' . $id;
+  }
+
+  if(isset($variables['element']['#name'])) {
+    $name = $variables['element']['#name'];
+    $suggestions[] = 'input__search__' . $name;
+  }
+}
+
+/***
+**** begin onset/contrib module hooks ***
+***/
+
+function ncs_primary_preprocess_archived_favorites(&$variables) {
+
+  if ($_SERVER['REDIRECT_URL'] === '/user/register'){
+    $variables['show_table'] = false;
+  }
+  else {
+    $variables['show_table'] = true;
+  }
+}

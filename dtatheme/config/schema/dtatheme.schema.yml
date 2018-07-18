@@ -1,0 +1,5 @@
+# Schema for the configuration files of the dtatheme theme.
+
+dtatheme.settings:
+  type: theme_settings
+  label: 'dtatheme settings'

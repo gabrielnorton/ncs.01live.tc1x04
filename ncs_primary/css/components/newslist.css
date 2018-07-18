@@ -1,0 +1,27 @@
+.newslist-category {
+    background-color: #3d3d40;
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 4px;
+    display: inline-block;
+    margin-bottom:10px;
+}
+
+ul.newslist {
+    list-style: none;
+    margin:0;
+    padding:0;
+    line-height:200%;
+}
+ul.newslist li:before {
+    content: '  '
+}
+ul.newslist li a {
+    color: #2e2e2f;
+    padding:4px 2px;
+    font-weight:bold;
+}
+ul.newslist li a:hover {
+    text-decoration: underline;
+}

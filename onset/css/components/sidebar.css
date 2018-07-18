@@ -1,0 +1,235 @@
+/* ------------------ Sidebar ----------------- */
+
+.movedown {
+  transform:translateY(100%);
+}
+
+@media (max-width: 650px) {
+    #sidebar-second-top {
+	   float: right;
+	   position: relative;
+	   width: 100%;
+    }
+}
+
+@media all and (min-width: 651px) {
+  .sidebar {
+    float: left;
+    position: relative;
+    width: 50%;
+  }
+  [dir="rtl"] .sidebar {
+    float: right;
+  }
+  .layout-one-sidebar .sidebar {
+    width: 100%;
+  }
+}
+
+@media all and (max-width: 851px) {
+    .node--type-gallery{
+        clear:both;
+    }
+}
+
+@media all and (min-width: 851px) {
+ .sidebar {
+    float: left;
+  }
+
+  .layout-one-sidebar .sidebar {
+    width: 25%;
+  }
+
+  #content{
+    position: relative;
+  }
+
+  /* branden css changes
+   * sidebar first changed top
+   * sidebar first top and bottom
+   * same for sidebar second*/
+  #sidebar-first-bottom {
+    width: 25%;
+    margin-left: -100%;
+  }
+  [dir="rtl"] #sidebar-first-bottom {
+    margin-right: -100%;
+    margin-left: 0;
+  }
+
+  #sidebar-first-top {
+    width: 25%;
+    margin-top:-10px
+    /*margin-left: -100%;  */
+  }
+  [dir="rtl"] #sidebar-first-top {
+    margin-right: -100%;
+    margin-left: 0;
+  }
+
+  #sidebar-second-bottom {
+    width: 25%;
+    margin-left: -25%;
+    clear: none;
+  }
+  [dir="rtl"] #sidebar-second-bottom {
+    margin-right: -25%;
+    margin-left: 0;
+  }
+    #sidebar-second-top {
+    width: 25%;
+    /* margin-left: -25%;  */
+    clear: none;
+    float: right;
+  }
+  [dir="rtl"] #sidebar-second-top {
+    margin-right: -25%;
+    margin-left: 0;
+  }
+}
+
+.sidebar.searchbox-node-page, .sidebar.searchbox-user-page {
+  padding: 0px;
+}
+.sidebar .section {
+  padding: 10px 15px 0;
+}
+.sidebar .block {
+  border-style: solid;
+  border-width: 1px;
+  padding: 15px 20px;
+  margin: 0 0 20px;
+}
+#sidebar-second-top .block {
+  padding: 0px;
+}
+.sidebar h2 {
+  margin: 0 0 0.5em;
+  border-bottom: 1px solid #d6d6d6;
+  padding-bottom: 5px;
+  text-shadow: 0 1px 0 #fff;
+  font-size: 1.071em;
+  line-height: 1.2;
+}
+.sidebar .block .content {
+  font-size: 0.914em;
+  line-height: 1.4;
+}
+.sidebar tbody {
+  border: none;
+}
+.sidebar tr.even,
+.sidebar tr.odd {
+  background: none;
+  border-bottom: 1px solid #d6d6d6;
+}
+/*
+#sidebar-first-bottom {background-color: gray;}
+#sidebar-first-top {background-color: gray;}
+#sidebar-second-bottom {background-color: yellow;}
+#sidebar-second-top {background-color: yellow;}
+*/
+@media (min-width:851px) {
+  #main #content.main-content.node-page,
+  #main #content.main-content.section-front {
+    transform: translateY(-85px);
+  }
+  #main #content.main-content.front-page {
+    transform: translateY(-40px);
+  }
+  .form-search {
+    width: 91px
+  }
+}
+
+@media (max-width: 850px) {
+  #sidebar-second-top.searchbox #block-searchapiform,
+  #sidebar-second-top.searchbox #block-showcase-search {
+    float: right;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 850px) {
+  #sidebar-second-top.searchbox-section-front #block-searchapiform,
+  #sidebar-second-top.searchbox-section-front #block-showcase-search {
+    float: right;
+    z-index: 1;
+    transform: translateY(-30px);
+  }
+  #sidebar-second-top.searchbox-section-front #search-api-block-form,
+  #sidebar-second-top.searchbox-section-front #search-showcase-form {
+    z-index: -1;
+  }
+}
+
+@media (max-width: 850px) {
+  #sidebar-second-top.searchbox-node-page #block-searchapiform, 
+  #sidebar-second-top.searchbox-user-page #block-searchapiform,
+  #sidebar-second-top.searchbox-node-page #block-showcase-search  {
+    float: right;
+    z-index: 1;
+    padding: 0px;
+  }
+}
+@media (max-width: 600px) {
+  #sidebar-second-top.searchbox-node-page #block-searchapiform, 
+  #sidebar-second-top.searchbox-user-page #block-searchapiform,
+  #sidebar-second-top.searchbox-node-page #block-showcase-search {
+    transform: translateY(-22px);
+  }
+}
+
+@media (min-width: 851px) {
+  #sidebar-second-top input.form-search {
+    width: 68%;
+  }
+}
+
+@media (min-width: 1200px) {
+  #sidebar-second-top.searchbox {
+    transform: translateX(-40px);
+  }
+
+  #sidebar-second-top.searchbox-section-front {
+    transform: translateX(-40px);
+  }
+}
+
+/* hide blocks jqueried into the folding block */
+#block-onset-views-block-trending-now-trending-now, 
+#block-showcase-views-block-trending-now-trending-now {
+  display:none;
+}
+
+#block-onset-views-block-trending-now-most-read, 
+#block-showcase-views-block-trending-now-most-read {
+  display:none;
+}
+#block-onset-views-block-trending-now-most-commented, 
+#block-showcase-views-block-trending-now-most-commented {
+  display:none;
+}
+#block-onset-views-block-list-polls-block-1, 
+#block-showcase-views-block-list-polls-block-1 {
+  display:none;
+}
+
+.region-content .block-local-tasks-block {
+  clear:both;
+}
+
+
+.panel-group .panel.panel-default .panel-body ul li{
+  margin-bottom:15px;
+}
+
+.sidebar h2{
+  text-transform: uppercase;
+}
+
+.sidebar .view-audience-recommended .views-row.view-node {
+	margin-top:15px;
+
+}

@@ -1,0 +1,45 @@
+name: dtatheme
+type: theme
+base theme: classy
+description: 'A flexible, recolorable theme with many regions and a responsive, mobile-first layout.'
+package: Custom
+# version: VERSION
+# custom: 8.x
+libraries:
+  - dtatheme/global-styling
+  - dtatheme/slideshow
+  - dtatheme/bootstrap
+  - dtatheme/global-scripting
+ckeditor_stylesheets:
+  - css/base/elements.css
+  - css/components/captions.css
+  - css/components/content.css
+  - css/components/table.css
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: Highlighted
+  featured_top: 'Featured top'
+  breadcrumb: Breadcrumb
+  content: Content
+  category_news_first: 'Category news first'
+  category_news_second: 'Category news second'
+  category_news_third: 'Category news third'
+  category_news_fourth: 'Category news fourth'
+  category_news_fifth: 'Category news fifth'
+  category_news_sixth: 'Category news sixth'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  sidebar_category_news_first: 'Sidebar category news first'
+  sidebar_category_news_second: 'Sidebar category news second'
+  featured_bottom: 'Featured bottom'
+  footer_fifth: 'Footer fifth'
+
+# Information added by Drupal.org packaging script on 2015-10-07
+version: 8.x-2017.4.0.2
+core: '8.x'
+project: 'drupal'
+datestamp: 1444253576

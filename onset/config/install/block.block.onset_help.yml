@@ -1,0 +1,22 @@
+uuid: ada7383e-30e1-44e7-ba01-018863012dc9
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - onset
+_core:
+  default_config_hash: 8I8iACSa0sKO3k3jlvUG1ge52rfcKX7USJAQYnzuBgg
+id: onset_help
+theme: onset
+region: content
+weight: -30
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

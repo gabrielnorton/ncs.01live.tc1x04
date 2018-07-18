@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - onset
+_core:
+  default_config_hash: MbXse2sCS_FROAxI2loK8D80tQZhHRQ7nFbJFCPOomQ
+id: onset_main_menu
+theme: onset
+region: primary_menu
+weight: -32
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 0
+  cache:
+    max_age: -1
+visibility: {  }

@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Theme override for a 'form' element.
+ *
+ * Available variables
+ * - attributes: A list of HTML attributes for the wrapper element.
+ * - children: The child elements of the form.
+ *
+ * @see template_preprocess_form()
+ */
+#}
+
+{% if twigdebug == 1 %}
+  <pre>
+  {% for key, value in _context %}
+    {{ key }}
+  {% endfor %}
+  </pre>
+  {{ dump(attributes) }}
+{% endif %}
+
+<form{{ attributes }}>
+  {{ children }}
+</form>

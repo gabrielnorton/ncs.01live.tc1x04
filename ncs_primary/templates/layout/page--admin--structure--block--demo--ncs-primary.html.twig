@@ -1,0 +1,58 @@
+{% set classes = [] %}
+
+<style>
+  /* demonstrate block regions */
+  #page-wrapper { 
+    padding-top: 35px;
+  }
+  #page-wrapper .block-region {
+    background: none;
+    margin-top: 0;
+    margin-bottom: 0;
+  }  
+</style>
+
+<div {{ attributes.setAttribute('id', 'page-wrapper') }} >
+  <section id="page-header">
+    {{ page.top_bar }}
+    {{ page.header }}
+  </section><!--//#page-header-->
+
+  <section id="page-header-second">
+    {{ page.primary_menu }}
+    {{ page.secondary_menu }}
+    {{ page.breadcrumb }}
+    {{ page.page_top}}
+    {{ page.highlighted }}
+  </section>
+
+  <section id="page-features-top">
+    {% if show_featured_top %}
+      {{ page.featured_top }}
+    {% endif %}
+  </section>
+
+  <section id="page-content" class="container-fluid">
+    <div>
+      <div class="col-sm-3 page-content-left">
+        {{ page.left_content }}
+      </div>
+      <div class="col-sm-6 page-content">
+        {{ page.content }}
+      </div>
+      <div class="col-sm-3 page-content-right">
+        {{ page.right_content }}
+      </div>
+    </div>
+  </section><!--//#page-content-->
+
+  <section id="page-features-bottom">
+      {{ page.featured_bottom }}
+      {{ page.page_bottom }}
+  </section>
+
+  <footer id="page-footer" class="site-footer">
+    {{ page.footer }}
+  </footer><!--//#page-footer-->
+
+</div><!--//#page-wrapper-->

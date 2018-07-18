@@ -1,0 +1,28 @@
+{%
+  set classes = [
+    'node',
+    'node--type-' ~ node.bundle|clean_class,
+    node.isPromoted() ? 'node--promoted',
+    node.isSticky() ? 'node--sticky',
+    not node.isPublished() ? 'node--unpublished',
+    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+  ]
+%}
+
+{% if content_type in ['blog_post'] %}
+  {{ attach_library('ncs_primary/slideshow') }}
+  <div {{ attributes }}>
+    <div class="blog-slide">
+        <a href="{{ url }}">{{ author_picture }}</a>
+        {# render the label (title) or headline a/b depending on content type #}
+        {% import "themes/custom/ncs_primary/templates/macros/abheading.html.twig" as headline %}
+        {{ headline.abheading(heading_a, heading_b, ab_heading_checkbox, title, url, label, title_attributes, content_type, view_mode) }}
+    </div>
+  </div>
+
+{% else %}
+
+  {{ content }}
+
+{% endif %}
+

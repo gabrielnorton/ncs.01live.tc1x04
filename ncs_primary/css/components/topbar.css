@@ -1,0 +1,31 @@
+.ncs_primary_topbar .ncs-primarytopbar-search,
+.ncs_primary_topbar .ncs-primarytopbar-mini-temp {
+  display: inline-block;
+}
+
+.ncs_primary_topbar .ncs-primarytopbar-mini-temp {
+  padding: 10px;
+}
+
+.ncs-primary-topbar-search i.fa.fa-search {
+    font-size: 24px;
+    vertical-align: middle;
+}
+
+.ncs-primary-topbar-search form {
+  margin:0;
+  padding:0;
+}
+
+.navbar-toggle .icon-bar {
+  background:black;
+}
+
+.ncs-primary-topbar-mini-temp {
+ display: inline-block;
+ margin-right:20px;
+}
+.ncs-primary-topbar-search {
+  display:inline-block;
+}
+

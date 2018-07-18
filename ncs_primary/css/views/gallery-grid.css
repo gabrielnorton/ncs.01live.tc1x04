@@ -1,0 +1,12 @@
+div.node--view-mode-gallery-grid .node-title a {
+    font-size: 22px;
+    color: #24272b;
+}
+
+div.node--view-mode-gallery-grid .node-title a:hover,
+div.node--view-mode-gallery-grid .node-title a:hover span,
+div.node--view-mode-gallery-grid .node-title a:focus,
+div.node--view-mode-gallery-grid .node-title a:active {
+    color:#358ea7;
+    text-decoration:none;
+}

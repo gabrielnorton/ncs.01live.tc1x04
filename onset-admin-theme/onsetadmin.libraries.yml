@@ -1,0 +1,9 @@
+global-styling:
+  version: 8.x-2017.4.0.2
+  css:
+    theme:
+      css/style.css: {}
+  js:
+    js/onset-admin-theme.js: {}
+  dependencies:
+    - core/jquery

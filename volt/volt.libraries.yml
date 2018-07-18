@@ -1,0 +1,7 @@
+voltstyle:
+  version: 8.x-2017.4.0.2
+  css:
+    theme:
+      css/bootstrap.min.css: {}
+  js:
+    js/bootstrap.min.js: {}

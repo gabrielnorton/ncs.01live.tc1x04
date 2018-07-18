@@ -1,0 +1,65 @@
+.region-header {
+}
+
+.region-top-bar .container-fluid,
+.region-header,
+#page-wrapper #page-content,
+.region-breadcrumb,
+.region-highlighted,
+.region-primary-menu .menu--ncs-primary-main {
+  max-width:1400px;
+}
+
+.region-primary-menu {
+}
+
+.region-featured-top,
+.region-featured-bottom {
+  max-width: 1600px;
+}
+
+@media (max-width: 1440px) {
+  .region-top-bar .container-fluid,
+  .region-header,
+  #page-wrapper #page-content,
+  .region-breadcrumb,
+  .region-highlighted,
+  .region-primary-menu .menu--ncs-primary-main {
+    max-width:1220px;
+  }
+
+  .region-featured-top,
+  .region-featured-bottom {
+    max-width: 1420px;
+  }
+}
+
+.region-breadcrumb,
+.region-highlighted {
+  margin:0 auto;
+}
+
+/* @to-do: breadcrumb region will show since the status block is there.
+perhaps move status block to a different region, above the fold */
+.region-breadcrumb {
+  padding: 0;
+  margin-bottom:0;
+  background:none;
+}
+.region-breadcrumb .block-local-tasks-block {
+  background-color: #f5f5f5;
+  padding:10px;
+}
+
+#page-wrapper #page-content {
+  padding: 2rem;
+}
+
+.region-featured-top {
+
+}
+
+.block-system-main-block,
+.region-featured-top {
+  padding-bottom: 20px;
+}

@@ -1,0 +1,16 @@
+body {
+  word-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+  max-width:100%;
+  height:auto;
+}
+
+textarea {
+  outline: none;
+  border: 1px solid #888;
+  border-radius: 6px;
+}

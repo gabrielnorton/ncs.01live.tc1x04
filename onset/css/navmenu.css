@@ -1,0 +1,30 @@
+.region-primary-menu .menu a{
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+.region-primary-menu .menu-item{
+  padding: 0 0px;
+  margin: 0 0px;
+}
+
+.contextual-reigon .block-menu .navigation{
+    background-color: rgba(255,255,255, 0.7);
+}
+
+.region-primary-menu{
+    border-top: 1px solid white;
+    border-bottom: 2px solid black;
+}
+
+#header .layout-container{
+  max-width: 100%;
+}
+
+#logo{
+  margin-left: 15%;
+}
+
+.section.layout-container.clearfix .region.region-header{
+  margin-right: 10%;
+}

@@ -1,0 +1,118 @@
+.view-latest-blogs .field--type-image .field-item {
+	width: 100%; 350px
+    height: 220px;
+}
+.view-latest-blogs .field--type-image .field-item img {
+	width: 100%;
+    height: auto;
+}
+.view-latest-blogs .node .field--type-text-with-summary {
+	/*width: 55%;*/
+	float: left;
+	display: block;
+	margin: 3px;
+	padding: 1px;
+	width: 50%;
+	vertical-align: top;
+}
+.view-latest-blogs .node .field--type-image {
+	display: block;
+	margin: 3px;
+	width: 45%;
+	float: right;
+}
+.view-latest-blogs .node__content.clearfix {
+	overflow: hidden;
+}
+.view-latest-blogs .field-item {
+	margin: 0 auto;
+}
+.view-latest-blogs article.node--view-mode-teaser {
+	background-color: #FFFFFF;
+	border: none;
+	border-bottom: 1px solid #d3d7d9;
+	padding-bottom: 0;
+}
+.view-latest-blogs article.node--view-mode-teaser.first-article {
+	background-color: #F8F8F8;
+}
+
+.view-latest-blogs {
+	/*width: 70%;*/
+}
+
+.view-latest-blogs .node__links ul.links.inline {
+	display: table;
+	float: right;
+	margin-bottom: 0;
+	padding-bottom: 7px;
+	/*position: absolute;
+    bottom: 0;
+    right: 0;*/
+}
+.view-latest-blogs .node__links ul.links.inline .comment-new-comments {
+	display: none;
+}
+.view-latest-blogs .node__links ul.links.inline li {
+	float: left;
+    /*padding: 10px;
+    background-color: lightgray;*/
+}
+.view-latest-blogs .node__links ul.links.inline li:hover {
+    /*background-color: #72A732;*/
+}
+.view-latest-blogs .node__links ul.links.inline li a {
+	padding: 10px;
+    background-color: lightgray;
+}
+.view-latest-blogs .node__links ul.links.inline a:hover,
+.view-latest-blogs .node__links ul.links.inline a:focus {
+  color: #FFF;
+  background-color: #72A732;
+}
+.view-latest-blogs .node__links ul.links.inline .comment-comments,
+.view-latest-blogs .node__links ul.links.inline .comment-add,
+.view-latest-blogs .node__links ul.links.inline .comment-forbidden,
+.view-latest-stories .node__links ul.links.inline .comment-new-comments {
+	display: none !important;
+}
+.view-latest-blogs div.node__links {
+	position: relative;
+    bottom: 0;
+    right: 0;
+    /*margin: 0 23px 0 0;*/
+    padding: 0;
+}
+.view-latest-blogs article.node--view-mode-teaser header span {
+	margin: 0 0 15px 3px !important;
+}
+/* for blog article page, picture should be fully size and not floating  */
+.node--type-blog-post .node--promoted .node--view-mode-full  .field--type-image .field-item img {
+	width: 100%;
+    height: auto;
+} 
+
+/* blogs sidebar make the picture float to left  */
+.view-latest-blogs .views-field-user-picture img {
+  float:left;
+  padding-right:22px;
+ }
+ /*blog sidebar name needs to float left but stay under the Image by using clear of left floating object */
+ /* then make it fix width so body text on right does not push up against the author name */
+.view-latest-blogs .views-field-name {
+  float:left;
+  clear: left;
+  padding-top: 5px;
+  padding-right:15px;
+  width: 58px;
+  font:bold;
+}
+ /* create this blogs-sidebar class in view to get handle to it here. specify height so it doesn't mush up against each other */
+.blogs-sidebar {
+  height:90px;
+}
+/* move the sidebar title and body flush up against the top here to override the settings in latestblock.css file */
+.view-latest-blogs .views-field-title {
+  padding-top: 0px;
+  padding-bottom: 2px;
+}

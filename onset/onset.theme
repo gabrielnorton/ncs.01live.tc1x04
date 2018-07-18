@@ -1,0 +1,359 @@
+<?php
+
+/**
+ * @file
+ * Functions to support theming in the onset theme.
+ */
+
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\Display\EntityViewDisplayInterface;
+use Drupal\taxonomy\Entity\Term;
+
+function onset_page_attachments_alter(array &$page) {
+  $page['#attached']['library'][] = 'onset/bootstrap';
+  $page['#attached']['library'][] = 'onset/scroll';
+  $page['#attached']['drupalSettings']['scroll']['module']['user'] = \Drupal::currentUser()->isAuthenticated();
+  $page['#attached']['drupalSettings']['scroll']['user']['roles'] = \Drupal::currentUser()->getRoles();
+  $path = \Drupal::service('path.current')->getPath();
+  $pattern = '/\/node\/./';
+  $is_front_page =  \Drupal::service('path.matcher')->isFrontPage();
+  if (!$is_front_page) {
+    if (preg_match($pattern, $path)) {
+      $page_match = TRUE;
+    } else {
+      $page_match = FALSE;
+    }
+  } else {
+    $page_match = FALSE;
+  }
+  $page['#attached']['drupalSettings']['theme']['page']['is_node'] = $page_match;
+  //If debugcss=1, add debug css library
+  if(strpos($_SERVER['QUERY_STRING'], 'debugcss') !== false) {
+    $page['#attached']['library'][] = 'onset/debugcss';
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK() for HTML document templates.
+ *
+ * Adds body classes if certain regions have content.
+ */
+function onset_preprocess_html(&$variables) {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $variables['user'] = ($user->get('uid')->value) ?: -1;
+  $variables['email'] = ($user->get('mail')->value) ?: '';
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  if (isset($node) && ($node->get('type')->getString() == 'story')) {
+    $categoryArray = $node->get('field_content_category')->getValue();
+
+    $categories = '';
+    foreach ($categoryArray as $key => $value) {
+      $term = Term::load($value['target_id']);
+      if (is_object($term)) {
+        if ($categories == '') {
+          // $categories .= $term->getName() . ":" . $value['target_id'];
+          $categories .= $term->getName();
+        } else {
+          // $categories .= '|' . $term->getName() . ":" . $value['target_id'];
+          $categories .= '|' . $term->getName();
+        }
+      }
+    }
+
+    $variables['story_title'] = $node->get('title')->value;
+    $variables['storyCategory'] = $categories;
+    $variables['author'] = $node->getRevisionAuthor()->getDisplayName();
+    $variables['content_type'] = $node->getType();
+  } else {
+    // Not on node page
+    $variables['storyCategory'] = '';
+    $variables['author'] = '';
+    $variables['content_type'] = '';
+    $variables['story_title'] = '';
+  }
+
+  // Add information about the number of sidebars.
+/*
+  if (!empty($variables['page']['sidebar_first_top']) && !empty($variables['page']['sidebar_second_top']) &&!empty($variables['page']['sidebar_first_bottom']) && !empty($variables['page']['sidebar_second_bottom']) ) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+
+  elseif (!empty($variables['page']['sidebar_first_top']) && !empty($variables['page']['sidebar_second_top'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first_top']) && !empty($variables['page']['sidebar_second_bottom'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first_bottom']) && !empty($variables['page']['sidebar_second_top'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first_bottom']) && !empty($variables['page']['sidebar_second_bottom'])) {
+    $variables['attributes']['class'][] = 'layout-two-sidebars';
+  }
+  elseif (!empty($variables['page']['sidebar_first_top'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first-top';
+  }
+  elseif (!empty($variables['page']['sidebar_first_bottom'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-first-bottom';
+  }
+  elseif (!empty($variables['page']['sidebar_second_top'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second-top';
+  }
+  elseif (!empty($variables['page']['sidebar_second_bottom'])) {
+    $variables['attributes']['class'][] = 'layout-one-sidebar';
+    $variables['attributes']['class'][] = 'layout-sidebar-second-bottom';
+  }
+  else {
+    $variables['attributes']['class'][] = 'layout-no-sidebars';
+  }
+
+  if (!empty($variables['page']['featured_top'])) {
+    $variables['attributes']['class'][] = 'has-featured-top';
+  }
+*/
+  //Add the CSS overrides field from the theme settings configuration
+  $variables['css_overrides'] = theme_get_setting('css_overrides');
+}
+
+function onset_preprocess_page(&$variables) {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $variables['user'] = ($user->get('uid')->value) ?: -1;
+  $variables['email'] = ($user->get('mail')->value) ?: '';
+
+  $node = \Drupal::routeMatch()->getParameter('node');
+
+  $path = \Drupal::service('path.current')->getPath();
+  if(preg_match('/^\/user\/([0-9]+)/', $path, $matches) && \Drupal::currentUser()->id() == $matches[1] && $matches[1] != 0){
+    $variables['#attached']['library'][] = 'onset/userpage';
+  }
+
+  if (isset($node) && ($node->get('type')->getString() == 'story')) {
+    $categoryArray = $node->get('field_content_category')->getValue();
+
+    $categories = '';
+    foreach ($categoryArray as $key => $value) {
+      $term = Term::load($value['target_id']);
+      if (is_object($term)) {
+        if ($categories == '') {
+          // $categories .= $term->getName() . ":" . $value['target_id'];
+          $categories .= $term->getName();
+        } else {
+          // $categories .= '|' . $term->getName() . ":" . $value['target_id'];
+          $categories .= '|' . $term->getName();
+        }
+      }
+    }
+
+    $variables['story_title'] = $node->get('title')->value;
+    $variables['storyCategory'] = $categories;
+    $variables['author'] = $node->getRevisionAuthor()->getDisplayName();
+    $variables['content_type'] = $node->getType();
+    $variables['#attached']['library'][] = 'onset/story_page';
+  } else {
+    // Not on node page
+    $variables['storyCategory'] = '';
+    $variables['author'] = '';
+    $variables['content_type'] = '';
+    $variables['story_title'] = '';
+  }
+}
+
+/**
+ *Implements template_preprocess_html
+ */
+function onset_preprocess(&$variables){
+  // Only want to add a class to sidebar if route is not a view (mainly just controllers only)
+  $route = \Drupal::routeMatch()->getRouteName();
+  if (substr($route, 0, 4) === 'view' && $route !== 'contextual.render') {
+    $variables['is_view'] = TRUE;
+  }
+  $path = \Drupal::service('path.current')->getPath();
+  $pattern = '/\/node\/./';
+  $is_front_page =  \Drupal::service('path.matcher')->isFrontPage();
+  if(! $is_front_page){
+    if(preg_match($pattern, $path)){
+      $page_match= TRUE;
+    }else{
+      $page_match = FALSE;
+    }
+  }else{
+    $page_match = FALSE;
+  }
+  $variables['is_node'] = $page_match;
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function onset_preprocess_page_title(&$variables) {
+  // Since the title and the shortcut link are both block level elements,
+  // positioning them next to each other is much simpler with a wrapper div.
+  if (!empty($variables['title_suffix']['add_or_remove_shortcut']) && $variables['title']) {
+    // Add a wrapper div using the title_prefix and title_suffix render
+    // elements.
+    $variables['title_prefix']['shortcut_wrapper'] = array(
+      '#markup' => '<div class="shortcut-wrapper clearfix">',
+      '#weight' => 100,
+    );
+    $variables['title_suffix']['shortcut_wrapper'] = array(
+      '#markup' => '</div>',
+      '#weight' => -99,
+    );
+    // Make sure the shortcut link is the first item in title_suffix.
+    $variables['title_suffix']['add_or_remove_shortcut']['#weight'] = -100;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
+ */
+function onset_preprocess_maintenance_page(&$variables) {
+  // By default, site_name is set to Drupal if no db connection is available
+  // or during site installation. Setting site_name to an empty string makes
+  // the site and update pages look cleaner.
+  // @see template_preprocess_maintenance_page
+  if (!$variables['db_is_active']) {
+    $variables['site_name'] = '';
+  }
+
+  // onset has custom styling for the maintenance page.
+  $variables['#attached']['library'][] = 'onset/maintenance_page';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function onset_preprocess_node(&$variables) {
+  // Remove the "Add new comment" link on teasers or when the comment form is
+  // displayed on the page.
+  if ($variables['teaser'] || !empty($variables['content']['comments']['comment_form'])) {
+    unset($variables['content']['links']['comment']['#links']['comment-add']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function onset_preprocess_block(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $current_uri = \Drupal::request()->getRequestUri();
+
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['attributes']['class'][] = 'clearfix';
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function onset_preprocess_menu(&$variables) {
+  $variables['attributes']['class'][] = 'clearfix';
+  $variables['attributes']['class'][] = 'navbar';
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ */
+function onset_theme_suggestions_form_alter(array &$suggestions, array $variables) {
+  if ($variables['element']['#form_id'] == 'search_block_form') {
+    $suggestions[] = 'form__search_block_form';
+  }
+
+  if ($variables['element']['#form_id'] == 'search_api_block_form') {
+    $suggestions[] = 'form__search_api_block_form';
+  }
+
+  // for /user/password reset form
+  // see ---
+  if ($variables['element']['#form_id'] == 'user_pass') {
+    $suggestions[] = 'form__user_pass';
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for page templates.
+ */
+function onset_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    $suggestions[] = 'page__'.$content_type;
+  }
+}
+
+/**
+ * Implements hook_form_alter() to add classes to the search form.
+ */
+function onset_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (in_array($form_id, ['search_block_form', 'search_form'])) {
+    $key = ($form_id == 'search_block_form') ? 'actions' : 'basic';
+    if (!isset($form[$key]['submit']['#attributes'])) {
+      $form[$key]['submit']['#attributes'] = new Attribute();
+    }
+    $form[$key]['submit']['#attributes']->addClass('search-form__submit');
+  }
+}
+/**
+ * implements hook_form_FORM_ID_alter
+ */
+function onset_form_user_register_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if (array_key_exists('field_user_byline', $form)) {
+    $form['field_user_byline'] = null;
+  }
+}
+/**
+ *Implements hook_preprocess_HOOK
+ */
+function onset_preprocess_archived_favorites(&$variables) {
+  if ($_SERVER['REDIRECT_URL'] === '/user/register'){
+    $variables['show_table'] = false;
+  }
+  else {
+    $variables['show_table'] = true;
+  }
+}
+function onset_views_pre_view(\Drupal\views\ViewExecutable $view, $display_id, array &$args) {
+  print "test";
+}
+
+function onset_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface &$form_state, $form_id = NULL) {
+  // Work-around for a core bug affecting admin themes. See issue #943212.
+  if (isset($form_id)) {
+    return;
+  }
+
+  $form['css_overrides'] = array(
+    '#type'          => 'textarea',
+    '#default_value' => theme_get_setting('css_overrides'),
+    '#format'        => 'full_html',
+    '#title'         => t('Custom CSS Overrides'),
+    '#description'   => t("Add custom CSS here to modify styles across all non-admin pages."),
+  );
+}
+
+function onset_block_view_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block, &$vars){
+  if($block->getPluginId() == "system_menu_block:account"){
+    if (!\Drupal::currentUser()->isAnonymous()) {
+      $build['#attached']['drupalSettings']['login_mod']['module']['user'] = \Drupal::currentUser()->getUsername();// this passes php data to javascript!
+      //$build['#attached']['library'][] = 'login_mod/logout';
+      $build['#cache']['contexts'][] = 'user';
+      $vars['logged_in']= true;
+    }
+  }
+}
+
+/**
+ * Implements template_preprocess_image().
+ */
+function onset_preprocess_image(&$vars) {
+  if ($vars['style_name'] == 'medium' | $vars['style_name'] == 'front_page_category'| $vars['style_name'] == 'default' | $vars['style_name'] == 'main_slider') {
+    // Remove explicit width & height declaration.
+    unset($vars['width'], $vars['height'], $vars['attributes']['width'], $vars['attributes']['height']);
+  }
+}
+

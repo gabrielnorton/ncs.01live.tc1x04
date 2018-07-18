@@ -1,0 +1,164 @@
+bootstrap:
+  version: VERSION
+  css:
+    base:
+      css/bootstrap/bootstrap.min.css: {}
+  js:
+    js/bootstrap/bootstrap.min.js: {}
+
+color:
+  version: VERSION
+  css:
+    theme:
+      css/colors.css: { weight: 1000 }
+
+debugcss:
+  version: VERSION
+  css:
+    component:
+      css/debug/debug.css: {}
+
+global-styling:
+  version: VERSION
+  css:
+    base:
+      css/base/grid.css: {}
+      css/base/elements.css: {}
+      css/base/region.css: {}
+      css/base/block.css: {}
+    component:
+      css/components/ads.css: {}
+      css/components/cards.css: {}
+      css/components/comments.css: {}
+      css/components/newslist.css: {}
+      css/components/node.css: {}
+      css/components/poll.css: {}
+      css/components/tabs.css: {}
+      css/components/topbar.css: {}
+      css/components/video.css: {}
+      css/views/teaser.css: {}
+      css/views/trending.css: {}
+      css/views/topics.css: {}
+    theme:
+      css/font-awesome.min.css: { minified: true, weight: 1000  }
+      css/site/main.css: { weight: 1000 }
+  js:
+      js/block.js: {}
+      js/node.js: {}
+  dependencies:
+    - core/jquery
+
+loginmodal:
+  version: VERSION
+  css:
+    component:
+      css/components/login-modal.css: {}
+  js:
+    js/components/login-modal/login-modal.js: {}
+  dependencies:
+    - core/jquery
+
+messages:
+  version: VERSION
+  css:
+    component:
+      css/components/messages.css: { preprocess: false }
+
+navigation:
+  version: VERSION
+  css:
+    component:
+      css/components/navigation.css: {}
+  js:
+    js/components/navigation/navigation.js: {}
+  dependencies:
+    - ncs_primary/bootstrap
+
+color.preview:
+  version: VERSION
+  css:
+    theme:
+      css/base/region.css: {}
+      color/preview.css: {}
+  js:
+    color/preview.js: {}
+  dependencies:
+    - color/drupal.color
+
+maintenance_page:
+  version: VERSION
+  css:
+    theme:
+      css/maintenance-page.css: {}
+  dependencies:
+    - system/maintenance
+    - primary/global-styling
+
+user:
+  version: VERSION
+  css:
+    component:
+      css/components/user.css: {}
+
+# start view modes
+slideshow:
+  version: VERSION
+  css:
+    theme: 
+      js/components/slideshow/slick/slick.css: {}
+      js/components/slideshow/slick/slick-theme.css: {}
+      css/components/slideshow.css: {}
+  js:
+    js/components/slideshow/slick/slick.js: {}
+    js/components/slideshow/slideshow.js: {}
+
+gallerygrid:
+  version: VERSION
+  css:
+    component:
+      css/views/gallery-grid.css: {}
+
+sidebarteaser:
+  version: VERSION
+  css:
+    component:
+      css/views/sidebarteaser.css: {}
+
+headlines:
+  version: VERSION
+  css:
+    theme:
+      css/views/headlines.css: {}
+
+# start views
+breaking:
+  version: VERSION
+  css:
+    theme:
+      css/views/breaking.css: {}
+
+user_uploaded_images:
+  version: VERSION
+  css:
+    theme:
+      css/views/user-uploaded-images.css: {}
+
+calendar:
+  version: VERSION
+  css:
+    theme:
+      css/components/calendar.css: {}
+  js:
+    js/components/calendar/calendar.js: {}
+
+staff:
+  version: VERSION
+  css:
+    theme:
+      css/components/staff.css: {}
+
+stories-nearby:
+  version: VERSION
+  css:
+    component:
+      css/views/stories-nearby.css: {}

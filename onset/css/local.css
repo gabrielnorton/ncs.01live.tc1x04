@@ -1,0 +1,254 @@
+/*
+  regions
+  header blocks
+  login modal / session menu
+  social nav menu
+  sidebar-group
+  footer
+*/
+
+/* regions */
+
+body{
+  word-wrap: break-word;
+}
+
+article.embedded-entity img{
+  max-width: 100%;
+  height: 100%;
+}
+
+.region-top-bar {
+  padding: 4px 0;
+  background-color: #ececec;
+}
+
+.region-header {
+  padding: 10px 0;
+}
+
+@media (max-width: 767px) {
+  .region-header .block-system-branding-block {
+    margin-bottom:10px;
+  }
+  .region-header .block-mini-temp-block {
+    text-align: right;
+  }
+}
+
+/* login modal and menu */
+
+#onset-login .modal-dialog {
+  width: 258px;
+  color: black;
+}
+
+#onset-login .block-user-login-block .btn {
+  background: white;
+}
+
+.menu--account .menu,
+.onset-login-nav {
+  font-family: 'Open Sans', sans-serif !important;
+  margin: 0;
+  text-align: right;
+  min-height: 20px;
+  list-style: none;
+}
+
+@media (max-width: 768px){
+  .menu--account .menu, .onset-login-nav {
+    text-align: center;
+  }
+}
+
+.menu--account .menu #welcome-user,
+.onset-login-nav #welcome-user {
+  border-right: solid 1px black;
+  padding-right: 10px;
+}
+
+.menu--account .menu li,
+.onset-login-nav li {
+  display: inline;
+}
+
+.menu--account .menu li a,
+.onset-login-nav #welcome-user li a {
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  color: #2f2f2f;
+}
+
+.menu--account .menu li a:hover,
+.onset-login-nav #welcome-user li a:hover {
+  color: #49c1db;
+}
+
+
+/*
+.menu--account .menu li a[href="/user"]:before {
+  font-family: FontAwesome;
+  content: "\f007  ";
+  font-size: 20px;
+} */
+
+.menu--account .menu li a[href="/user"] {}
+
+/* social account nav */
+
+.social-account-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social-account-nav ul li {
+  display: inline-block;
+  padding: 0 5px;
+  margin: 0;
+}
+
+.social-account-nav ul li a {
+  display: block;
+  font-size: 0;
+}
+
+.social-account-nav ul li a {
+  font-family: FontAwesome;
+  color: #2f2f2f;
+}
+
+.social-account-nav ul li a:hover {
+  text-decoration: none;
+  color: #49c1db;
+}
+
+.social-account-nav ul li a:before {
+  font-size: 22px;
+}
+
+.social-account-nav ul li a[title="Facebook"]:before {
+  /*background: #ffffff url("/themes/custom/onset/images/fb.png") no-repeat right top;*/
+  content: "\f09a";
+}
+
+.social-account-nav ul li a[title="RSS"]:before {
+  /*background: #ffffff url("/themes/custom/onset/images/rssfeed.png") no-repeat right top;*/
+  content: "\f09e";
+}
+
+.social-account-nav ul li a[title="Youtube"]:before {
+  /*background: #ffffff url("/themes/custom/onset/images/ytube.png") no-repeat right top;*/
+  content: "\f167";
+}
+
+.social-account-nav ul li a[title="Twitter"]:before {
+  /*background: #ffffff url("/themes/custom/onset/images/twt.png") no-repeat right top;*/
+  content: "\f099";
+}
+
+
+/* sidebar-group */
+
+.sidebar-group h2,
+.sidebar-group h2 a {
+  font-family: 'Domine', serif;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 3px 0;
+  border-bottom: solid 1px black;
+  color: #252424;
+}
+
+/* make link in the google map look like links */
+.sidebar-group .geolocation-common-map h2:hover {
+  text-decoration: underline;
+}
+.sidebar-group .geolocation-common-map h2 a:hover {
+  color: #23527c;
+}
+.sidebar-group .geolocation-common-map h2 a {
+  color: #337ab7;
+}
+
+.sidebar-group div[role="tab"] h2,
+.sidebar-group div[role="tab"] h2 a {
+  border-bottom: none;
+}
+
+.sidebar-group .advertisement {
+  margin-top: 10px;
+}
+
+.sidebar-panel .content,
+.sidebar-panel .block-content {
+  background-color: #eaeaea;
+  padding: 10px;
+}
+
+.sidebar-group .abheading .abheading_title,
+.sidebar-group .abheading .abheading_title a,
+.sidebar-group .abheading .abheading_title span {
+  font-family: 'Domine', serif;
+  font-weight: bold;
+}
+
+
+/* footer */
+
+.footer {
+  margin-top: 10px;
+}
+
+.site-footer,
+.site-footer a {
+  color: white;
+}
+
+.footer-info {}
+
+/* ON-2773 Centered notification block */
+div.messages__wrapper.layout-container {
+  display: inline-block;
+  width: 100%;
+} 
+
+div.region.region-highlighted.row.highlighted {
+  text-align: center;
+}
+
+
+
+/* ON-2936 Add event button is now centered */
+a#add-events.admin-only.btn {
+  text-align: center;
+  width: 100%;
+}
+
+/**ON-3842 get rid of the underline that makes titles hard to read**/
+.sidebar-group .geolocation-common-map-container h2{
+  border-bottom: none;
+  font-size: 14px;
+}
+
+.sidebar-group .geolocation-common-map-container h2 a{
+  border-bottom:none;
+
+}
+
+.sidebar-group .geolocation-common-map-container h2 a:focus, .sidebar-group .geolocation-common-map-container h2 a:hover{
+  border-bottom: none;
+  font-size: 16px;
+  text-decoration: none;
+}
+@media (min-width: 768px) {
+  #navbar {
+    text-align: center;
+  }
+  #main-menu-collapse {
+    display: inline-block;
+    margin: 0px auto;
+  }
+}

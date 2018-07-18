@@ -1,0 +1,16 @@
+.override{
+	display: inline-block;
+}
+
+
+
+.slider_container .field-content img {
+	height: 480px;
+	width:	480px;
+}
+
+.slider_container .views-field .views-field-title .slide-title span a{
+	font-size: 56px;
+}
+
+

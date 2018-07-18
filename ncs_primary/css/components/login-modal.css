@@ -1,0 +1,51 @@
+@media (max-width: 767px){
+  .modal-dialog {
+    margin: 10px auto;
+    width: 80%;
+    margin: 79px auto;
+  }
+
+  .modal-body .messages{
+    margin-top: 0px !important;
+    font-size: 10px;
+  }
+}
+
+div#ncs-user-login {
+    color: black;
+}
+
+.login-modal {
+  display: none;
+  overflow: scroll;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  -webkit-overflow-scrolling: auto;
+  outline: 0;
+}
+
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
+div#ncs-user-login ul.nav.nav-pills {
+    margin: 10px 0;
+}
+
+div#ncs-user-login ul.nav.nav-pills li {
+  margin: 5px 5px 5px 0;
+}
+
+div#ncs-user-login a.create-account-link,
+div#ncs-user-login a.request-password-link {
+      background: #337ab7;
+      color: white;
+      font-weight:bold;
+}
+
